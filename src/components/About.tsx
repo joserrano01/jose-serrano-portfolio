@@ -3,20 +3,20 @@
 import { useEffect, useRef, useState } from "react";
 
 const expertise = [
-  { icon: "🔒", title: "Seguridad Informática",      desc: "Maestría en Ciberseguridad, certificación SAP ABAP, Symantec NetBackup, hardening y auditorías de seguridad." },
-  { icon: "🖥️", title: "DevOps & Infraestructura",   desc: "Linux (RedHat, Ubuntu, Suse), VMware vCenter, Docker, CI/CD pipelines, Windows Server, Oracle Linux." },
-  { icon: "⚛️", title: "Frontend – React / Next.js", desc: "Aplicaciones SPA y SSR modernas con React, Next.js, TypeScript y Tailwind CSS." },
-  { icon: "🛠️", title: "Backend – Laravel / FastAPI", desc: "APIs REST y microservicios con Laravel (PHP) y FastAPI (Python). PostgreSQL, MySQL, Oracle." },
-  { icon: "🤖", title: "IA & Machine Learning",       desc: "Integración de Gemini AI, Computer Vision para reconocimiento de imágenes, LLMs y automatización inteligente." },
-  { icon: "📱", title: "Desarrollo Mobile",            desc: "Apps Android nativas con Kotlin y multiplataforma con React Native, integradas a sistemas empresariales." },
-  { icon: "☁️", title: "Cloud & ERP",                  desc: "AWS, Azure, SAP-POS en 29 sucursales, SAP-R3 interfaces/IDOCS, WMS-KNAPP, AS400." },
+  { icon: "🔒", title: "Seguridad Informática",      desc: "Maestría en Ciberseguridad. Implemento seguridad enterprise desde la arquitectura, no como parche posterior." },
+  { icon: "🖥️", title: "DevOps & Infraestructura",   desc: "Infraestructura robusta que no falla. Linux, VMware, Docker, CI/CD — sistemas en producción 24/7 sin interrupciones." },
+  { icon: "⚛️", title: "Frontend – React / Next.js", desc: "Interfaces modernas, rápidas y accesibles. Del prototipo a producción con código limpio y mantenible." },
+  { icon: "🛠️", title: "Backend – Laravel / FastAPI", desc: "APIs REST y microservicios enterprise que manejan carga real. PostgreSQL, MySQL, Oracle — con optimización desde el diseño." },
+  { icon: "🤖", title: "IA & Machine Learning",       desc: "Integración de Gemini AI, Computer Vision y LLMs en sistemas reales. IA aplicada con impacto de negocio medible." },
+  { icon: "📱", title: "Desarrollo Mobile",            desc: "Apps Android nativas (Kotlin) y multiplataforma (React Native) integradas a sistemas empresariales críticos." },
+  { icon: "☁️", title: "Cloud & ERP",                  desc: "AWS, Azure, SAP POS en 29 sucursales, SAP-R3, WMS-KNAPP. Implementaciones a escala con cero tolerancia al fallo." },
 ];
 
 const stats = [
   { num: 20, suffix: "+", label: "Años de Experiencia" },
   { num: 300, suffix: "+", label: "Estaciones Impactadas" },
   { num: 29, suffix: "",   label: "Sucursales SAP-POS" },
-  { num: 2,  suffix: "",   label: "Maestrías / Diplomas" },
+  { num: 2,  suffix: "",   label: "Maestrías & Diplomas" },
 ];
 
 const CARD_BG = "rgba(12,30,56,0.65)";
@@ -88,7 +88,7 @@ export default function About() {
         <div className="text-center mb-16">
           <span className="section-badge">Sobre Mí</span>
           <h2 className="text-3xl md:text-4xl font-bold text-white mt-3">
-            Experto en Seguridad &amp; <span className="gradient-text">Desarrollo</span>
+            Experiencia que <span className="gradient-text">Genera Resultados</span>
           </h2>
           <div className="section-divider" />
         </div>
@@ -98,18 +98,13 @@ export default function About() {
           {/* Bio */}
           <div style={{ opacity: 0, animation: bioVisible ? "slideInLeft 0.7s ease both" : "none" }}>
             <p className="text-slate-300 leading-relaxed mb-4">
-              <strong className="text-white">Full Stack Developer, Security Expert y AI Engineer</strong> con más
-              de 20 años de experiencia construyendo soluciones robustas, seguras y escalables. Del frontend en
-              React al backend en Laravel/FastAPI, pasando por infraestructura Linux, pipelines DevOps e
-              integración de Inteligencia Artificial con Gemini.
+              <strong className="text-white">Consultor Senior TI y Full Stack Developer con más de 20 años transformando retos empresariales en soluciones tecnológicas que funcionan.</strong> He liderado implementaciones críticas en empresas con cientos de usuarios simultáneos, sin interrupciones y dentro del plazo.
             </p>
             <p className="text-slate-400 leading-relaxed mb-6">
-              Experto en sistemas empresariales (SAP, WMS-KNAPP, AS400), administración de infraestructura con
-              VMware y Docker, desarrollo mobile con <strong className="text-white">Kotlin y React Native</strong>,
-              y Maestría en Seguridad Informática.
+              Especialista en arquitecturas enterprise, seguridad informática y sistemas de alto impacto — desde SAP en 29 sucursales hasta integración de Inteligencia Artificial. Maestría en Seguridad Informática. Cada proyecto que inicio, lo termino.
             </p>
             <div className="flex flex-wrap gap-2">
-              {["Panamá Pacífico, Howard", "Español (nativo)", "Inglés (intermedio)"].map((tag) => (
+              {["Panamá · Disponible para proyectos", "Español (nativo)", "Inglés (intermedio)"].map((tag) => (
                 <span
                   key={tag}
                   className="px-3 py-1.5 text-sm rounded-full text-blue-300 border"

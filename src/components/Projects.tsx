@@ -12,6 +12,7 @@ interface Project {
   link?: string;
   category: string;
   accentColor?: string;
+  impact?: string;
 }
 
 const defaultProjects: Project[] = [
@@ -21,6 +22,7 @@ const defaultProjects: Project[] = [
     description: "Implementación y desarrollo del sistema SAP POS en 29 sucursales de Farmacias Arrocha, impactando más de 300 estaciones de trabajo a nivel nacional.",
     tech: ["SAP POS", "SAP ABAP", "Oracle", "Linux"],
     category: "ERP / SAP",
+    impact: "300+ estaciones activas · 29 sucursales unificadas",
   },
   {
     id: "2",
@@ -28,6 +30,7 @@ const defaultProjects: Project[] = [
     description: "Integración del sistema de gestión de almacenes WMS-KNAPP con AS400, automatizando la facturación en línea y mejorando la eficiencia operativa.",
     tech: ["WMS-KNAPP", "AS400", "PHP", "SQL Server"],
     category: "Integración",
+    impact: "Facturación automatizada · Cero procesos manuales",
   },
   {
     id: "3",
@@ -35,6 +38,7 @@ const defaultProjects: Project[] = [
     description: "Desarrollo de interfaces e IDOCS para SAP-R3, logrando integración efectiva con sistemas Linux e IBM AS400 y mejorando la interoperabilidad.",
     tech: ["SAP R3", "IDOCS", "Linux", "IBM AS400"],
     category: "ERP / SAP",
+    impact: "Integración total · Interoperabilidad entre plataformas",
   },
   {
     id: "4",
@@ -42,6 +46,7 @@ const defaultProjects: Project[] = [
     description: "Sistema automatizado de control para préstamos, financiamiento, inventario y cuentas por cobrar/pagar para Grupo Lee Chang.",
     tech: ["Trimax", "SCO Unix", "Linux Red Hat", "Novell"],
     category: "Finanzas",
+    impact: "Control integral · Préstamos y contabilidad automatizados",
   },
   {
     id: "5",
@@ -49,6 +54,7 @@ const defaultProjects: Project[] = [
     description: "Sistema inteligente que analiza imágenes de platos de comida con Gemini Vision API. Identifica ingredientes, genera recetas paso a paso y calcula valores nutricionales en tiempo real.",
     tech: ["Gemini AI", "Python", "FastAPI", "React Native", "Computer Vision"],
     category: "IA",
+    impact: "Análisis en <3 segundos · Precisión con Gemini Vision API",
   },
   {
     id: "6",
@@ -56,6 +62,7 @@ const defaultProjects: Project[] = [
     description: "Plataforma de asistente de ventas virtual impulsado por IA. Gestiona catálogo, atiende consultas de clientes, procesa pedidos y genera reportes de ventas automáticamente.",
     tech: ["FastAPI", "React", "PostgreSQL", "Docker", "IA"],
     category: "IA",
+    impact: "Atención 24/7 · Reducción de carga operativa manual",
   },
   {
     id: "7",
@@ -63,6 +70,7 @@ const defaultProjects: Project[] = [
     description: "Sistema de gestión empresarial con módulos de administración de pólizas, seguimiento de siniestros, reportes ejecutivos y panel de control para agentes.",
     tech: ["Laravel", "React", "MySQL", "Docker", "REST API"],
     category: "Web",
+    impact: "Gestión centralizada · Pólizas y siniestros en un solo sistema",
   },
 ];
 
@@ -360,6 +368,14 @@ export default function Projects() {
                       </span>
                     ))}
                   </div>
+
+                  {project.impact && (
+                    <div className="mt-3 pt-3 border-t flex items-start gap-1.5"
+                      style={{ borderColor: 'rgba(59,130,246,0.12)' }}>
+                      <span className="mt-0.5 flex-shrink-0 text-xs" style={{ color: '#38bdf8' }}>▸</span>
+                      <p className="text-xs" style={{ color: '#7dd3fc' }}>{project.impact}</p>
+                    </div>
+                  )}
 
                   {project.link && (
                     <a

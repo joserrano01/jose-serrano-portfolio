@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Particles from "./Particles";
 
-const ROLES = ["Full Stack Developer", "Security Expert", "AI Engineer", "DevOps Engineer"];
+const ROLES = ["Consultor Senior TI", "Full Stack Developer", "Security Expert", "AI Engineer"];
 
 const techStack = [
   { name: "Laravel" },
@@ -130,7 +130,7 @@ export default function Hero() {
           }}
         >
           <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-          Disponible para proyectos · Panamá
+          Consultor Senior TI · 20+ Años de Track Record · Panamá
         </div>
 
         {/* Avatar with orbit rings */}
@@ -177,7 +177,7 @@ export default function Hero() {
           className="text-slate-500 text-sm mb-10 max-w-lg mx-auto"
           style={{ opacity: 0, animation: "slideInUp 0.5s ease 0.65s both" }}
         >
-          +20 años construyendo soluciones tecnológicas robustas en Panamá
+          Transformo retos tecnológicos en resultados de negocio medibles
         </p>
 
         {/* Tech badges — staggered, unified style */}
