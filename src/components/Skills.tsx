@@ -3,32 +3,32 @@
 import { useEffect, useRef, useState } from "react";
 
 const skills = [
-  { name: "Liderazgo & Gestión",           pct: 95, category: "Gestión" },
-  { name: "Optimización de Procesos",       pct: 95, category: "Gestión" },
-  { name: "Cloud Computing (AWS / Azure)",  pct: 85, category: "Tecnología" },
-  { name: "Seguridad Informática",          pct: 82, category: "Tecnología" },
-  { name: "Innovación TI",                  pct: 88, category: "Tecnología" },
-  { name: "React / Next.js",               pct: 88, category: "Desarrollo" },
-  { name: "Laravel / PHP",                  pct: 90, category: "Desarrollo" },
-  { name: "FastAPI / Python",               pct: 86, category: "Desarrollo" },
-  { name: "Kotlin (Android)",              pct: 80, category: "Desarrollo" },
-  { name: "React Native (Mobile)",          pct: 78, category: "Desarrollo" },
-  { name: "Gemini AI / LLM Integration",   pct: 82, category: "IA & Machine Learning" },
-  { name: "Computer Vision / Imágenes",    pct: 75, category: "IA & Machine Learning" },
-  { name: "Python ML / Data Analysis",     pct: 80, category: "IA & Machine Learning" },
-  { name: "Linux / DevOps / Docker",       pct: 92, category: "Infraestructura" },
-  { name: "SAP (ABAP / POS / R3)",         pct: 86, category: "ERP" },
-  { name: "SQL / Oracle / PostgreSQL",     pct: 90, category: "Bases de Datos" },
+  { name: "Liderazgo & Gestión",             pct: 95, category: "Gestión" },
+  { name: "Optimización de Procesos",         pct: 95, category: "Gestión" },
+  { name: "Cloud Computing (AWS / Azure)",    pct: 85, category: "Tecnología" },
+  { name: "Seguridad Informática",            pct: 82, category: "Tecnología" },
+  { name: "Innovación TI",                   pct: 88, category: "Tecnología" },
+  { name: "React / Next.js",                 pct: 88, category: "Desarrollo" },
+  { name: "Laravel / PHP",                   pct: 90, category: "Desarrollo" },
+  { name: "FastAPI / Python",                pct: 86, category: "Desarrollo" },
+  { name: "Kotlin (Android)",               pct: 80, category: "Desarrollo" },
+  { name: "React Native (Mobile)",           pct: 78, category: "Desarrollo" },
+  { name: "Gemini AI / LLM Integration",    pct: 82, category: "IA & ML" },
+  { name: "Computer Vision / Imágenes",     pct: 75, category: "IA & ML" },
+  { name: "Python ML / Data Analysis",      pct: 80, category: "IA & ML" },
+  { name: "Linux / DevOps / Docker",        pct: 92, category: "Infraestructura" },
+  { name: "SAP (ABAP / POS / R3)",          pct: 86, category: "ERP" },
+  { name: "SQL / Oracle / PostgreSQL",      pct: 90, category: "Bases de Datos" },
 ];
 
-const categoryColors: Record<string, { bar: string; label: string }> = {
-  "Gestión":             { bar: "from-amber-500  to-yellow-400",  label: "text-amber-400 bg-amber-500/10 border-amber-500/25" },
-  "Tecnología":          { bar: "from-orange-500 to-red-400",     label: "text-orange-400 bg-orange-500/10 border-orange-500/25" },
-  "Desarrollo":          { bar: "from-cyan-500   to-blue-500",    label: "text-cyan-400 bg-cyan-500/10 border-cyan-500/25" },
-  "IA & Machine Learning":{ bar: "from-blue-500  to-violet-500",  label: "text-blue-400 bg-blue-500/10 border-blue-500/25" },
-  "Infraestructura":     { bar: "from-green-500  to-emerald-400", label: "text-green-400 bg-green-500/10 border-green-500/25" },
-  "ERP":                 { bar: "from-purple-500 to-violet-400",  label: "text-purple-400 bg-purple-500/10 border-purple-500/25" },
-  "Bases de Datos":      { bar: "from-sky-500    to-cyan-400",    label: "text-sky-400 bg-sky-500/10 border-sky-500/25" },
+const catMeta: Record<string, { bar: string; label: string }> = {
+  "Gestión":        { bar: "from-amber-500  to-yellow-400",   label: "text-amber-400  bg-amber-500/10  border-amber-500/30" },
+  "Tecnología":     { bar: "from-orange-500 to-red-400",      label: "text-orange-400 bg-orange-500/10 border-orange-500/30" },
+  "Desarrollo":     { bar: "from-cyan-500   to-blue-500",     label: "text-cyan-400   bg-cyan-500/10   border-cyan-500/30" },
+  "IA & ML":        { bar: "from-blue-500   to-violet-500",   label: "text-blue-400   bg-blue-500/10   border-blue-500/30" },
+  "Infraestructura":{ bar: "from-green-500  to-emerald-400",  label: "text-green-400  bg-green-500/10  border-green-500/30" },
+  "ERP":            { bar: "from-purple-500 to-violet-400",   label: "text-purple-400 bg-purple-500/10 border-purple-500/30" },
+  "Bases de Datos": { bar: "from-sky-500    to-cyan-400",     label: "text-sky-400    bg-sky-500/10    border-sky-500/30" },
 };
 
 const techBadges = [
@@ -39,23 +39,28 @@ const techBadges = [
   "RedHat", "Ubuntu", "Git", "Gemini AI", "TensorFlow", "OpenCV", "LangChain",
 ];
 
-export default function Skills() {
+function useReveal(threshold = 0.15) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
-
   useEffect(() => {
     const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
-      { threshold: 0.15 }
+      ([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      { threshold }
     );
     if (ref.current) obs.observe(ref.current);
     return () => obs.disconnect();
-  }, []);
+  }, [threshold]);
+  return [ref, visible] as const;
+}
+
+export default function Skills() {
+  const [sectionRef, visible] = useReveal(0.1);
+  const [badgeRef, badgesVisible] = useReveal(0.1);
 
   const categories = [...new Set(skills.map((s) => s.category))];
 
   return (
-    <section id="habilidades" className="py-24" style={{ backgroundColor: "#0a1628" }} ref={ref}>
+    <section id="habilidades" className="py-24" style={{ backgroundColor: "#0a1628" }} ref={sectionRef}>
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16">
@@ -66,27 +71,37 @@ export default function Skills() {
           <div className="section-divider" />
         </div>
 
-        {/* Skills by category */}
+        {/* Skill bars by category */}
         <div className="space-y-10 mb-16">
-          {categories.map((cat) => {
-            const { bar, label } = categoryColors[cat] ?? { bar: "from-blue-500 to-cyan-400", label: "text-blue-400 bg-blue-500/10 border-blue-500/20" };
+          {categories.map((cat, catIdx) => {
+            const { bar, label } = catMeta[cat] ?? { bar: "from-blue-500 to-cyan-400", label: "text-blue-400 bg-blue-500/10 border-blue-500/20" };
             const catSkills = skills.filter((s) => s.category === cat);
             return (
-              <div key={cat}>
+              <div
+                key={cat}
+                style={{
+                  opacity: 0,
+                  animation: visible ? `slideInUp 0.55s ease ${catIdx * 0.12}s both` : "none",
+                }}
+              >
                 <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border mb-4 ${label}`}>
                   {cat}
                 </span>
                 <div className="grid md:grid-cols-2 gap-x-10 gap-y-4">
-                  {catSkills.map((skill) => (
+                  {catSkills.map((skill, si) => (
                     <div key={skill.name}>
                       <div className="flex justify-between text-sm mb-1.5">
                         <span className="text-slate-300">{skill.name}</span>
-                        <span className="font-semibold" style={{ color: "#93c5fd" }}>{skill.pct}%</span>
+                        <span className="font-semibold text-blue-300">{skill.pct}%</span>
                       </div>
                       <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
                         <div
-                          className={`h-full rounded-full bg-gradient-to-r ${bar} transition-all duration-1000 ease-out`}
-                          style={{ width: visible ? `${skill.pct}%` : "0%" }}
+                          className={`h-full rounded-full bg-gradient-to-r ${bar} transition-all ease-out`}
+                          style={{
+                            width: visible ? `${skill.pct}%` : "0%",
+                            transitionDuration: `${900 + si * 80}ms`,
+                            transitionDelay: `${catIdx * 120 + si * 60}ms`,
+                          }}
                         />
                       </div>
                     </div>
@@ -101,23 +116,27 @@ export default function Skills() {
         <div className="text-center mb-5">
           <h3 className="text-base font-semibold text-slate-400 tracking-wide">Tecnologías &amp; Herramientas</h3>
         </div>
-        <div className="flex flex-wrap gap-2 justify-center">
-          {techBadges.map((tech) => (
+        <div className="flex flex-wrap gap-2 justify-center" ref={badgeRef}>
+          {techBadges.map((tech, i) => (
             <span
               key={tech}
-              className="px-3 py-1.5 text-xs rounded-lg cursor-default transition-all duration-200 hover:-translate-y-0.5"
+              className="px-3 py-1.5 text-xs rounded-lg cursor-default transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
               style={{
                 background: "rgba(15,31,61,0.7)",
                 border: "1px solid rgba(59,130,246,0.15)",
                 color: "#94a3b8",
+                opacity: 0,
+                animation: badgesVisible ? `scaleIn 0.35s ease ${i * 0.025}s both` : "none",
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.borderColor = "rgba(59,130,246,0.4)";
+                (e.currentTarget as HTMLElement).style.borderColor = "rgba(59,130,246,0.5)";
                 (e.currentTarget as HTMLElement).style.color = "#93c5fd";
+                (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 12px rgba(59,130,246,0.15)";
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLElement).style.borderColor = "rgba(59,130,246,0.15)";
                 (e.currentTarget as HTMLElement).style.color = "#94a3b8";
+                (e.currentTarget as HTMLElement).style.boxShadow = "none";
               }}
             >
               {tech}
