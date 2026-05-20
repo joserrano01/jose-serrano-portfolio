@@ -42,6 +42,7 @@ const certifications = ["SAP ABAP Certified (SAP)", "Symantec NetBackup (Broadco
 const skills = [
   { category: "Desarrollo Web", items: "React · Next.js · TypeScript · Laravel · PHP · FastAPI · Python · REST APIs" },
   { category: "Mobile", items: "Kotlin (Android nativo) · React Native" },
+  { category: "IA & Machine Learning", items: "Gemini AI · Computer Vision · LLMs · LangChain · TensorFlow · OpenCV" },
   { category: "Infraestructura & DevOps", items: "Linux (RedHat/Ubuntu/Suse) · Docker · Ansible · Jenkins · CI/CD · VMware vCenter" },
   { category: "Mensajería & Middleware", items: "RabbitMQ · Message Brokers" },
   { category: "Cloud", items: "AWS · Azure" },
@@ -53,6 +54,8 @@ const skills = [
 const projects = [
   { name: "SAP POS – Farmacias Arrocha", tech: "SAP POS, ABAP, Oracle, Linux", impact: "300+ estaciones · 29 sucursales" },
   { name: "WMS-KNAPP / AS400 Integration", tech: "WMS-KNAPP, AS400, PHP, SQL Server", impact: "Facturación automatizada" },
+  { name: "Reconocimiento de Recetas con IA", tech: "Gemini AI, Python, FastAPI, React Native", impact: "Análisis en <3 segundos" },
+  { name: "VendedorVirtual", tech: "FastAPI, React, PostgreSQL, Docker, RabbitMQ", impact: "Atención 24/7 automatizada" },
   { name: "Sistema AXA", tech: "Laravel, React, MySQL, Docker", impact: "Gestión centralizada de pólizas" },
 ];
 
@@ -106,7 +109,7 @@ export default function CVPage() {
                 José Serrano
               </h1>
               <p className="text-lg font-semibold mt-1" style={{ color: "#2563eb" }}>
-                Consultor Senior TI · Full Stack Developer · Security Expert · DevOps Engineer
+                Consultor Senior TI · Full Stack Developer · Security Expert · AI Engineer
               </p>
               <p className="text-sm mt-2" style={{ color: "#6b7280" }}>
                 20+ años transformando retos empresariales en soluciones tecnológicas de alto impacto
@@ -138,8 +141,8 @@ export default function CVPage() {
           <p className="text-sm leading-relaxed" style={{ color: "#374151" }}>
             Consultor Senior TI con más de 20 años de experiencia comprobada en implementaciones enterprise de alto impacto.
             Especialista en arquitecturas seguras, sistemas distribuidos y modernización tecnológica. He liderado migraciones
-            críticas de plataformas POS en 28+ sucursales, implementado SAP en entornos nacionales y automatizado
-            infraestructura DevOps de alta disponibilidad. <strong style={{ color: "#111827" }}>Cada proyecto que inicio, lo entrego en producción.</strong>
+            críticas de plataformas POS en 28+ sucursales, implementado SAP en entornos nacionales y desarrollado soluciones
+            de Inteligencia Artificial con impacto de negocio medible. <strong style={{ color: "#111827" }}>Cada proyecto que inicio, lo entrego en producción.</strong>
           </p>
         </section>
 

@@ -49,6 +49,22 @@ const projects: Project[] = [
   },
   {
     id: "5",
+    title: "Reconocimiento de Recetas con IA",
+    description: "Sistema inteligente que analiza imágenes de platos de comida con Gemini Vision API. Identifica ingredientes, genera recetas paso a paso y calcula valores nutricionales en tiempo real.",
+    tech: ["Gemini AI", "Python", "FastAPI", "React Native", "Computer Vision"],
+    category: "IA",
+    impact: "Análisis en <3 segundos · Precisión con Gemini Vision API",
+  },
+  {
+    id: "6",
+    title: "VendedorVirtual",
+    description: "Plataforma de asistente de ventas virtual impulsado por IA. Gestiona catálogo, atiende consultas de clientes, procesa pedidos y genera reportes de ventas automáticamente.",
+    tech: ["FastAPI", "React", "PostgreSQL", "Docker", "RabbitMQ", "IA"],
+    category: "IA",
+    impact: "Atención 24/7 · Reducción de carga operativa manual",
+  },
+  {
+    id: "7",
     title: "Sistema AXA",
     description: "Sistema de gestión empresarial con módulos de administración de pólizas, seguimiento de siniestros, reportes ejecutivos y panel de control para agentes.",
     tech: ["Laravel", "React", "MySQL", "Docker", "REST API"],
@@ -61,6 +77,7 @@ const categoryStyle: Record<string, string> = {
   "ERP / SAP":   "bg-indigo-500/15 text-indigo-300 border-indigo-500/25",
   "Integración": "bg-sky-500/15   text-sky-300   border-sky-500/25",
   "Finanzas":    "bg-blue-500/15  text-blue-300  border-blue-500/25",
+  "IA":          "bg-blue-500/15  text-blue-300  border-blue-500/25",
   "Mobile":      "bg-indigo-500/15 text-indigo-300 border-indigo-500/25",
   "Web":         "bg-sky-500/15   text-sky-300   border-sky-500/25",
 };
@@ -71,6 +88,7 @@ const placeholderIcon: Record<string, string> = {
   "ERP / SAP":   "🏢",
   "Integración": "🔗",
   "Finanzas":    "💰",
+  "IA":          "🤖",
   "Mobile":      "📱",
   "Web":         "🌐",
 };

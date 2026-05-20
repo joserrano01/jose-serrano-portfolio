@@ -32,7 +32,7 @@ export default function Home() {
         style={{ backgroundColor: "#030810", borderColor: "rgba(59,130,246,0.1)", color: "#475569" }}
       >
         <p className="mb-1" style={{ color: "#334155" }}>
-          © {new Date().getFullYear()} José Serrano — Full Stack Developer · Security Expert · DevOps Engineer
+          © {new Date().getFullYear()} José Serrano — Full Stack Developer · Security Expert · AI Engineer
         </p>
         <p>Panamá · joseserrano01@gmail.com</p>
       </footer>
