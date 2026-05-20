@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 const expertise = [
   { icon: "🔒", title: "Seguridad Informática",      desc: "Maestría en Ciberseguridad. Implemento seguridad enterprise desde la arquitectura, no como parche posterior." },
-  { icon: "🖥️", title: "DevOps & Automatización",    desc: "Infraestructura robusta que no falla. Linux, VMware, Docker, CI/CD, Ansible — automatización end-to-end y sistemas en producción 24/7 sin interrupciones." },
+  { icon: "🖥️", title: "DevOps & Automatización",    desc: "Infraestructura robusta que no falla. Linux, VMware, Docker, Ansible, Jenkins — pipelines CI/CD automatizados y sistemas en producción 24/7 sin interrupciones." },
   { icon: "⚛️", title: "Frontend – React / Next.js", desc: "Interfaces modernas, rápidas y accesibles. Del prototipo a producción con código limpio y mantenible." },
   { icon: "🛠️", title: "Backend – Laravel / FastAPI", desc: "APIs REST y microservicios enterprise que manejan carga real. RabbitMQ para comunicación asíncrona entre servicios. PostgreSQL, MySQL, Oracle — con optimización desde el diseño." },
   { icon: "🤖", title: "IA & Machine Learning",       desc: "Integración de Gemini AI, Computer Vision y LLMs en sistemas reales. IA aplicada con impacto de negocio medible." },
