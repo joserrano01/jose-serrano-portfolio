@@ -16,6 +16,33 @@ function useReveal(threshold = 0.15) {
   return [ref, visible] as const;
 }
 
+function MagneticButton({ className, style, href, children, target, rel }: {
+  className: string; style: React.CSSProperties; href: string;
+  children: React.ReactNode; target?: string; rel?: string;
+}) {
+  const ref = useRef<HTMLAnchorElement>(null);
+  useEffect(() => {
+    const el = ref.current; if (!el) return;
+    const onMove = (e: MouseEvent) => {
+      const r = el.getBoundingClientRect();
+      const x = (e.clientX - r.left - r.width / 2) * 0.28;
+      const y = (e.clientY - r.top - r.height / 2) * 0.28;
+      el.style.transform = `translate(${x}px, ${y}px)`;
+    };
+    const onLeave = () => { el.style.transition = 'transform 0.5s cubic-bezier(0.23,1,0.32,1)'; el.style.transform = ''; };
+    const onEnter = () => { el.style.transition = 'transform 0.1s ease'; };
+    el.addEventListener('mousemove', onMove);
+    el.addEventListener('mouseleave', onLeave);
+    el.addEventListener('mouseenter', onEnter);
+    return () => {
+      el.removeEventListener('mousemove', onMove);
+      el.removeEventListener('mouseleave', onLeave);
+      el.removeEventListener('mouseenter', onEnter);
+    };
+  }, []);
+  return <a ref={ref} href={href} className={className} style={style} target={target} rel={rel}>{children}</a>;
+}
+
 export default function Contact() {
   const [cardsRef, cardsVisible] = useReveal(0.1);
   const [ctaRef, ctaVisible] = useReveal(0.1);
@@ -30,7 +57,6 @@ export default function Contact() {
       label: "Teléfono",
       value: "6430-0121 / 591-5535",
       href: "tel:64300121",
-      accent: "rgba(59,130,246,0.12)",
       iconColor: "#60a5fa",
     },
     {
@@ -42,7 +68,6 @@ export default function Contact() {
       label: "Email",
       value: "joseserrano01@gmail.com",
       href: "mailto:joseserrano01@gmail.com",
-      accent: "rgba(139,92,246,0.12)",
       iconColor: "#c084fc",
     },
     {
@@ -54,7 +79,6 @@ export default function Contact() {
       label: "WhatsApp",
       value: "+507 6430-0121",
       href: "https://wa.me/50764300121",
-      accent: "rgba(34,197,94,0.12)",
       iconColor: "#4ade80",
     },
     {
@@ -67,7 +91,6 @@ export default function Contact() {
       label: "Ubicación",
       value: "Panamá Pacífico, Howard",
       href: undefined,
-      accent: "rgba(245,158,11,0.12)",
       iconColor: "#fbbf24",
     },
   ];
@@ -94,8 +117,8 @@ export default function Contact() {
               key={item.label}
               className="rounded-2xl p-5 text-center card-hover"
               style={{
-                background: item.accent,
-                border: "1px solid rgba(255,255,255,0.08)",
+                background: "rgba(37,99,235,0.1)",
+                border: "1px solid rgba(59,130,246,0.12)",
                 backdropFilter: "blur(10px)",
                 opacity: 0,
                 animation: cardsVisible ? `scaleIn 0.45s ease ${i * 0.1}s both` : "none",
@@ -103,7 +126,7 @@ export default function Contact() {
             >
               <div
                 className="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-3"
-                style={{ background: "rgba(0,0,0,0.25)", color: item.iconColor }}
+                style={{ background: "rgba(59,130,246,0.12)", color: item.iconColor }}
               >
                 {item.icon}
               </div>
@@ -133,30 +156,30 @@ export default function Contact() {
             animation: ctaVisible ? "slideInUp 0.6s ease 0.3s both" : "none",
           }}
         >
-          <a
+          <MagneticButton
             href="https://wa.me/50764300121"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-7 py-3.5 text-white font-semibold rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-green-500/30 hover:-translate-y-0.5"
+            className="inline-flex items-center gap-3 px-7 py-3.5 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-green-500/30"
             style={{ background: "linear-gradient(135deg, #16a34a, #15803d)" }}
           >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
             </svg>
             Escribir por WhatsApp
-          </a>
-          <a
+          </MagneticButton>
+          <MagneticButton
             href="https://www.linkedin.com/in/jose-serrano-21406650/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-7 py-3.5 text-white font-semibold rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-blue-500/30 hover:-translate-y-0.5"
+            className="inline-flex items-center gap-3 px-7 py-3.5 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-blue-500/30"
             style={{ background: "#0077B5" }}
           >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
               <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
             </svg>
             Conectar en LinkedIn
-          </a>
+          </MagneticButton>
           <a
             href="mailto:joseserrano01@gmail.com"
             className="inline-flex items-center gap-3 px-7 py-3.5 font-semibold rounded-xl transition-all duration-200 hover:-translate-y-0.5 text-slate-300 hover:text-white"

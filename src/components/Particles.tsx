@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-const COLORS = ["#3b82f6", "#6366f1", "#06b6d4", "#8b5cf6"];
+const COLORS = ["#1d4ed8", "#2563eb", "#6366f1", "#38bdf8"];
 const COUNT = 65;
 const CONNECT = 130;
 
@@ -56,11 +56,11 @@ export default function Particles() {
           const dx = p.x - q.x, dy = p.y - q.y;
           const d2 = dx * dx + dy * dy;
           if (d2 < CONNECT * CONNECT) {
-            const a = (1 - Math.sqrt(d2) / CONNECT) * 0.22;
+            const alpha = (1 - Math.sqrt(d2) / CONNECT) * 0.22;
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(q.x, q.y);
-            ctx.strokeStyle = `rgba(99,102,241,${a})`;
+            ctx.strokeStyle = `rgba(37,99,235,${alpha})`;
             ctx.lineWidth = 0.6;
             ctx.stroke();
           }

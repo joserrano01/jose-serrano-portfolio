@@ -66,9 +66,9 @@ function JobCard({ job, idx }: { job: typeof jobs[0]; idx: number }) {
       <div
         className="absolute left-6 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full border-2 mt-6"
         style={{
-          background: "linear-gradient(135deg, #3b82f6, #8b5cf6)",
+          background: "linear-gradient(135deg, #2563eb, #6366f1)",
           borderColor: "#050d1a",
-          boxShadow: visible ? "0 0 12px rgba(59,130,246,0.6)" : "none",
+          boxShadow: visible ? "0 0 12px rgba(37,99,235,0.6)" : "none",
           transition: "box-shadow 0.4s ease 0.3s",
         }}
       />
@@ -78,14 +78,14 @@ function JobCard({ job, idx }: { job: typeof jobs[0]; idx: number }) {
         <div
           className="rounded-2xl p-6 card-hover"
           style={{
-            background: "rgba(15,31,61,0.7)",
-            border: "1px solid rgba(59,130,246,0.14)",
+            background: "rgba(12,30,56,0.65)",
+            border: "1px solid rgba(59,130,246,0.1)",
             backdropFilter: "blur(10px)",
           }}
         >
           <span
             className="inline-block px-3 py-1 text-xs rounded-full mb-3 font-medium"
-            style={{ background: "rgba(59,130,246,0.15)", color: "#93c5fd", border: "1px solid rgba(59,130,246,0.25)" }}
+            style={{ background: "rgba(37,99,235,0.15)", color: "#93c5fd", border: "1px solid rgba(59,130,246,0.25)" }}
           >
             {job.period}
           </span>
@@ -136,7 +136,7 @@ export default function Experience() {
             className="absolute left-6 md:left-1/2 top-0 w-0.5 -translate-x-1/2 transition-all duration-[2s] ease-out"
             style={{
               height: lineVisible ? "100%" : "0%",
-              background: "linear-gradient(to bottom, #3b82f6, #8b5cf6, #06b6d4)",
+              background: "linear-gradient(to bottom, #2563eb, #6366f1, #38bdf8)",
             }}
           />
           {jobs.map((job, i) => (

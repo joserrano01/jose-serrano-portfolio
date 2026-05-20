@@ -21,7 +21,6 @@ const defaultProjects: Project[] = [
     description: "Implementación y desarrollo del sistema SAP POS en 29 sucursales de Farmacias Arrocha, impactando más de 300 estaciones de trabajo a nivel nacional.",
     tech: ["SAP POS", "SAP ABAP", "Oracle", "Linux"],
     category: "ERP / SAP",
-    accentColor: "rgba(245,158,11,0.12)",
   },
   {
     id: "2",
@@ -29,7 +28,6 @@ const defaultProjects: Project[] = [
     description: "Integración del sistema de gestión de almacenes WMS-KNAPP con AS400, automatizando la facturación en línea y mejorando la eficiencia operativa.",
     tech: ["WMS-KNAPP", "AS400", "PHP", "SQL Server"],
     category: "Integración",
-    accentColor: "rgba(249,115,22,0.12)",
   },
   {
     id: "3",
@@ -37,7 +35,6 @@ const defaultProjects: Project[] = [
     description: "Desarrollo de interfaces e IDOCS para SAP-R3, logrando integración efectiva con sistemas Linux e IBM AS400 y mejorando la interoperabilidad.",
     tech: ["SAP R3", "IDOCS", "Linux", "IBM AS400"],
     category: "ERP / SAP",
-    accentColor: "rgba(245,158,11,0.12)",
   },
   {
     id: "4",
@@ -45,7 +42,6 @@ const defaultProjects: Project[] = [
     description: "Sistema automatizado de control para préstamos, financiamiento, inventario y cuentas por cobrar/pagar para Grupo Lee Chang.",
     tech: ["Trimax", "SCO Unix", "Linux Red Hat", "Novell"],
     category: "Finanzas",
-    accentColor: "rgba(16,185,129,0.12)",
   },
   {
     id: "5",
@@ -53,7 +49,6 @@ const defaultProjects: Project[] = [
     description: "Sistema inteligente que analiza imágenes de platos de comida con Gemini Vision API. Identifica ingredientes, genera recetas paso a paso y calcula valores nutricionales en tiempo real.",
     tech: ["Gemini AI", "Python", "FastAPI", "React Native", "Computer Vision"],
     category: "IA",
-    accentColor: "rgba(59,130,246,0.12)",
   },
   {
     id: "6",
@@ -61,7 +56,6 @@ const defaultProjects: Project[] = [
     description: "Plataforma de asistente de ventas virtual impulsado por IA. Gestiona catálogo, atiende consultas de clientes, procesa pedidos y genera reportes de ventas automáticamente.",
     tech: ["FastAPI", "React", "PostgreSQL", "Docker", "IA"],
     category: "IA",
-    accentColor: "rgba(139,92,246,0.12)",
   },
   {
     id: "7",
@@ -69,20 +63,20 @@ const defaultProjects: Project[] = [
     description: "Sistema de gestión empresarial con módulos de administración de pólizas, seguimiento de siniestros, reportes ejecutivos y panel de control para agentes.",
     tech: ["Laravel", "React", "MySQL", "Docker", "REST API"],
     category: "Web",
-    accentColor: "rgba(6,182,212,0.12)",
   },
 ];
 
+// Simplified: only blue/indigo/sky — no amber/orange/green
 const categoryStyle: Record<string, string> = {
-  "ERP / SAP":   "bg-amber-500/15  text-amber-300  border-amber-500/25",
-  "Integración": "bg-orange-500/15 text-orange-300 border-orange-500/25",
-  "Finanzas":    "bg-green-500/15  text-green-300  border-green-500/25",
-  "IA":          "bg-blue-500/15   text-blue-300   border-blue-500/25",
-  "Mobile":      "bg-violet-500/15 text-violet-300 border-violet-500/25",
-  "Web":         "bg-cyan-500/15   text-cyan-300   border-cyan-500/25",
+  "ERP / SAP":   "bg-indigo-500/15 text-indigo-300 border-indigo-500/25",
+  "Integración": "bg-sky-500/15   text-sky-300   border-sky-500/25",
+  "Finanzas":    "bg-blue-500/15  text-blue-300  border-blue-500/25",
+  "IA":          "bg-blue-500/15  text-blue-300  border-blue-500/25",
+  "Mobile":      "bg-indigo-500/15 text-indigo-300 border-indigo-500/25",
+  "Web":         "bg-sky-500/15   text-sky-300   border-sky-500/25",
 };
 
-const defaultCategoryStyle = "bg-slate-500/15 text-slate-300 border-slate-500/25";
+const defaultCategoryStyle = "bg-blue-500/15 text-blue-300 border-blue-500/25";
 
 const placeholderIcon: Record<string, string> = {
   "ERP / SAP":   "🏢",
@@ -92,6 +86,26 @@ const placeholderIcon: Record<string, string> = {
   "Mobile":      "📱",
   "Web":         "🌐",
 };
+
+function tiltHandlers() {
+  return {
+    onMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+      const el = e.currentTarget;
+      const r = el.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      el.style.transition = 'transform 0.08s ease, box-shadow 0.08s ease';
+      el.style.transform = `perspective(700px) rotateX(${-y * 14}deg) rotateY(${x * 14}deg) translateY(-6px) scale(1.015)`;
+      el.style.setProperty('--mx', `${e.clientX - r.left}px`);
+      el.style.setProperty('--my', `${e.clientY - r.top}px`);
+    },
+    onMouseLeave(e: React.MouseEvent<HTMLDivElement>) {
+      const el = e.currentTarget;
+      el.style.transition = 'transform 0.55s cubic-bezier(0.23,1,0.32,1), box-shadow 0.55s ease';
+      el.style.transform = '';
+    },
+  };
+}
 
 export default function Projects() {
   const [projects, setProjects] = useState<Project[]>(defaultProjects);
@@ -305,12 +319,16 @@ export default function Projects() {
             return (
               <div
                 key={project.id}
-                className="rounded-2xl overflow-hidden flex flex-col card-hover"
+                className="rounded-2xl overflow-hidden flex flex-col tilt-card"
                 style={{
-                  background: project.accentColor ?? "rgba(15,31,61,0.7)",
-                  border: "1px solid rgba(255,255,255,0.07)",
+                  background: `radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(37,99,235,0.1) 0%, transparent 55%), rgba(12,30,56,0.65)`,
+                  border: "1px solid rgba(59,130,246,0.1)",
                   backdropFilter: "blur(10px)",
-                }}
+                  transition: 'transform 0.55s cubic-bezier(0.23,1,0.32,1)',
+                  '--mx': '50%',
+                  '--my': '50%',
+                } as React.CSSProperties}
+                {...tiltHandlers()}
               >
                 {/* Image / placeholder */}
                 <div

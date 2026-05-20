@@ -21,14 +21,16 @@ const skills = [
   { name: "SQL / Oracle / PostgreSQL",      pct: 90, category: "Bases de Datos" },
 ];
 
-const catMeta: Record<string, { bar: string; label: string }> = {
-  "Gestión":        { bar: "from-amber-500  to-yellow-400",   label: "text-amber-400  bg-amber-500/10  border-amber-500/30" },
-  "Tecnología":     { bar: "from-orange-500 to-red-400",      label: "text-orange-400 bg-orange-500/10 border-orange-500/30" },
-  "Desarrollo":     { bar: "from-cyan-500   to-blue-500",     label: "text-cyan-400   bg-cyan-500/10   border-cyan-500/30" },
-  "IA & ML":        { bar: "from-blue-500   to-violet-500",   label: "text-blue-400   bg-blue-500/10   border-blue-500/30" },
-  "Infraestructura":{ bar: "from-green-500  to-emerald-400",  label: "text-green-400  bg-green-500/10  border-green-500/30" },
-  "ERP":            { bar: "from-purple-500 to-violet-400",   label: "text-purple-400 bg-purple-500/10 border-purple-500/30" },
-  "Bases de Datos": { bar: "from-sky-500    to-cyan-400",     label: "text-sky-400    bg-sky-500/10    border-sky-500/30" },
+// Unified gradient bar for all categories — all use the same shimmer gradient
+// Category label styles: max 3 variations
+const catMeta: Record<string, { label: string }> = {
+  "Gestión":         { label: "text-indigo-300 bg-indigo-500/10 border-indigo-500/20" },
+  "Tecnología":      { label: "text-sky-300    bg-sky-500/10    border-sky-500/20" },
+  "Desarrollo":      { label: "text-blue-300   bg-blue-500/10   border-blue-500/20" },
+  "IA & ML":         { label: "text-blue-300   bg-blue-500/10   border-blue-500/20" },
+  "Infraestructura": { label: "text-indigo-300 bg-indigo-500/10 border-indigo-500/20" },
+  "ERP":             { label: "text-indigo-300 bg-indigo-500/10 border-indigo-500/20" },
+  "Bases de Datos":  { label: "text-sky-300    bg-sky-500/10    border-sky-500/20" },
 };
 
 const techBadges = [
@@ -74,7 +76,7 @@ export default function Skills() {
         {/* Skill bars by category */}
         <div className="space-y-10 mb-16">
           {categories.map((cat, catIdx) => {
-            const { bar, label } = catMeta[cat] ?? { bar: "from-blue-500 to-cyan-400", label: "text-blue-400 bg-blue-500/10 border-blue-500/20" };
+            const { label } = catMeta[cat] ?? { label: "text-blue-300 bg-blue-500/10 border-blue-500/20" };
             const catSkills = skills.filter((s) => s.category === cat);
             return (
               <div
@@ -88,24 +90,30 @@ export default function Skills() {
                   {cat}
                 </span>
                 <div className="grid md:grid-cols-2 gap-x-10 gap-y-4">
-                  {catSkills.map((skill, si) => (
-                    <div key={skill.name}>
-                      <div className="flex justify-between text-sm mb-1.5">
-                        <span className="text-slate-300">{skill.name}</span>
-                        <span className="font-semibold text-blue-300">{skill.pct}%</span>
+                  {catSkills.map((skill, si) => {
+                    const delay = catIdx * 120 + si * 60;
+                    return (
+                      <div key={skill.name}>
+                        <div className="flex justify-between text-sm mb-1.5">
+                          <span className="text-slate-300">{skill.name}</span>
+                          <span className="font-semibold text-blue-300">{skill.pct}%</span>
+                        </div>
+                        <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
+                          <div
+                            className="h-full rounded-full transition-all ease-out"
+                            style={{
+                              width: visible ? `${skill.pct}%` : "0%",
+                              transitionDuration: `${900 + si * 80}ms`,
+                              transitionDelay: `${delay}ms`,
+                              background: 'linear-gradient(90deg, #1d4ed8, #2563eb, #38bdf8, #6366f1)',
+                              backgroundSize: '200% 100%',
+                              animation: visible ? `shimmerLine 3s ease ${delay}ms infinite` : 'none',
+                            }}
+                          />
+                        </div>
                       </div>
-                      <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
-                        <div
-                          className={`h-full rounded-full bg-gradient-to-r ${bar} transition-all ease-out`}
-                          style={{
-                            width: visible ? `${skill.pct}%` : "0%",
-                            transitionDuration: `${900 + si * 80}ms`,
-                            transitionDelay: `${catIdx * 120 + si * 60}ms`,
-                          }}
-                        />
-                      </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             );

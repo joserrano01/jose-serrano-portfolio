@@ -7,10 +7,12 @@ import Projects from "@/components/Projects";
 import Education from "@/components/Education";
 import Contact from "@/components/Contact";
 import ScrollProgress from "@/components/ScrollProgress";
+import CursorGlow from "@/components/CursorGlow";
 
 export default function Home() {
   return (
     <>
+      <CursorGlow />
       <ScrollProgress />
       <Navbar />
       <main>
