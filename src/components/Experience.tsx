@@ -13,6 +13,7 @@ const jobs = [
       "Implementé SAP POS en 29 farmacias, unificando operaciones nacionales bajo una plataforma estándar y eliminando inconsistencias entre sucursales.",
       "Integré WMS-KNAPP/AS400 automatizando la facturación en línea — eliminación de procesos manuales críticos y reducción de errores operativos.",
       "Implementé SAP-R3 interfaces e IDOCS para integración con sistemas existentes, logrando interoperabilidad total entre plataformas heterogéneas.",
+      "Automaticé aprovisionamiento y configuración de infraestructura con Ansible — reducción drástica de tiempos de despliegue y eliminación de configuraciones manuales inconsistentes.",
       "Administré infraestructura de alta disponibilidad: VMware VCenter, SAN DELL EqualLogic, Site Recovery Manager — uptime sostenido en ambiente crítico.",
       "Certificado SAP ABAP. Dominio end-to-end de la plataforma: desarrollo, configuración e integración.",
     ],

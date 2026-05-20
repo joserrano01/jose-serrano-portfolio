@@ -17,6 +17,7 @@ const skills = [
   { name: "Computer Vision / Imágenes",     pct: 75, category: "IA & ML" },
   { name: "Python ML / Data Analysis",      pct: 80, category: "IA & ML" },
   { name: "Linux / DevOps / Docker",        pct: 92, category: "Infraestructura" },
+  { name: "Automatización (Ansible / IaC)", pct: 88, category: "Infraestructura" },
   { name: "SAP (ABAP / POS / R3)",          pct: 86, category: "ERP" },
   { name: "SQL / Oracle / PostgreSQL",      pct: 90, category: "Bases de Datos" },
 ];
@@ -38,7 +39,7 @@ const techBadges = [
   "Kotlin", "React Native", "PHP", "Python", "JavaScript", "TypeScript", "Java",
   "SQL Server", "Oracle", "MySQL", "PostgreSQL",
   "SAP ABAP", "SAP POS", "SAP R3", "AWS", "Azure", "WMS-KNAPP", "AS400",
-  "RedHat", "Ubuntu", "Git", "Gemini AI", "TensorFlow", "OpenCV", "LangChain",
+  "RedHat", "Ubuntu", "Git", "Ansible", "Terraform", "Gemini AI", "TensorFlow", "OpenCV", "LangChain",
 ];
 
 function useReveal(threshold = 0.15) {
