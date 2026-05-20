@@ -1,4 +1,25 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+
+function useReveal(threshold = 0.15) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      { threshold }
+    );
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, [threshold]);
+  return [ref, visible] as const;
+}
+
 export default function Contact() {
+  const [cardsRef, cardsVisible] = useReveal(0.1);
+  const [ctaRef, ctaVisible] = useReveal(0.1);
+
   const contacts = [
     {
       icon: (
@@ -9,7 +30,7 @@ export default function Contact() {
       label: "Teléfono",
       value: "6430-0121 / 591-5535",
       href: "tel:64300121",
-      accent: "rgba(59,130,246,0.15)",
+      accent: "rgba(59,130,246,0.12)",
       iconColor: "#60a5fa",
     },
     {
@@ -21,7 +42,7 @@ export default function Contact() {
       label: "Email",
       value: "joseserrano01@gmail.com",
       href: "mailto:joseserrano01@gmail.com",
-      accent: "rgba(139,92,246,0.15)",
+      accent: "rgba(139,92,246,0.12)",
       iconColor: "#c084fc",
     },
     {
@@ -33,7 +54,7 @@ export default function Contact() {
       label: "WhatsApp",
       value: "+507 6430-0121",
       href: "https://wa.me/50764300121",
-      accent: "rgba(34,197,94,0.15)",
+      accent: "rgba(34,197,94,0.12)",
       iconColor: "#4ade80",
     },
     {
@@ -46,7 +67,7 @@ export default function Contact() {
       label: "Ubicación",
       value: "Panamá Pacífico, Howard",
       href: undefined,
-      accent: "rgba(245,158,11,0.15)",
+      accent: "rgba(245,158,11,0.12)",
       iconColor: "#fbbf24",
     },
   ];
@@ -67,8 +88,8 @@ export default function Contact() {
         </div>
 
         {/* Contact cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
-          {contacts.map((item) => (
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10" ref={cardsRef}>
+          {contacts.map((item, i) => (
             <div
               key={item.label}
               className="rounded-2xl p-5 text-center card-hover"
@@ -76,6 +97,8 @@ export default function Contact() {
                 background: item.accent,
                 border: "1px solid rgba(255,255,255,0.08)",
                 backdropFilter: "blur(10px)",
+                opacity: 0,
+                animation: cardsVisible ? `scaleIn 0.45s ease ${i * 0.1}s both` : "none",
               }}
             >
               <div
@@ -102,7 +125,14 @@ export default function Contact() {
         </div>
 
         {/* CTA buttons */}
-        <div className="flex flex-wrap justify-center gap-4">
+        <div
+          className="flex flex-wrap justify-center gap-4"
+          ref={ctaRef}
+          style={{
+            opacity: 0,
+            animation: ctaVisible ? "slideInUp 0.6s ease 0.3s both" : "none",
+          }}
+        >
           <a
             href="https://wa.me/50764300121"
             target="_blank"
