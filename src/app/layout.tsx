@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { headers } from "next/headers";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -22,9 +23,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  // Reading headers() makes Next.js aware of x-nonce set by middleware,
+  // so it injects the correct nonce into its own generated scripts (__NEXT_DATA__, hydration).
+  await headers();
+
   return (
     <html lang="es" className="h-full scroll-smooth">
       <body className={`${inter.className} min-h-full`}>{children}</body>
