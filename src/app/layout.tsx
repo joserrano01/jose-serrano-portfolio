@@ -6,18 +6,18 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "José Serrano | Consultor Senior TI · Full Stack · Security · AI",
+  title: "José Serrano | Consultor Senior TI · Full Stack · Security · DevOps",
   description:
-    "Consultor Senior TI con 20+ años transformando retos empresariales en soluciones tecnológicas de alto impacto. Full Stack Developer, Security Expert y AI Engineer en Panamá.",
+    "Consultor Senior TI con 20+ años transformando retos empresariales en soluciones tecnológicas de alto impacto. Full Stack Developer, Security Expert y DevOps Engineer en Panamá.",
   keywords: [
     "Consultor TI Panamá", "Full Stack Developer", "Security Expert",
     "Laravel", "FastAPI", "React", "Kotlin", "Ansible", "Jenkins", "RabbitMQ",
-    "SAP", "Docker", "AI Engineer", "Gemini AI",
+    "SAP", "Docker", "DevOps Engineer",
   ],
   authors: [{ name: "José Serrano" }],
   openGraph: {
     title: "José Serrano | Consultor Senior TI",
-    description: "20+ años entregando resultados en proyectos enterprise. Full Stack · Security · AI · DevOps.",
+    description: "20+ años entregando resultados en proyectos enterprise. Full Stack · Security · DevOps.",
     type: "website",
     locale: "es_PA",
   },

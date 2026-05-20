@@ -13,9 +13,6 @@ const skills = [
   { name: "FastAPI / Python",                pct: 86, category: "Desarrollo" },
   { name: "Kotlin (Android)",               pct: 80, category: "Desarrollo" },
   { name: "React Native (Mobile)",           pct: 78, category: "Desarrollo" },
-  { name: "Gemini AI / LLM Integration",    pct: 82, category: "IA & ML" },
-  { name: "Computer Vision / Imágenes",     pct: 75, category: "IA & ML" },
-  { name: "Python ML / Data Analysis",      pct: 80, category: "IA & ML" },
   { name: "Linux / DevOps / Docker",        pct: 92, category: "Infraestructura" },
   { name: "Automatización (Ansible / Jenkins)", pct: 88, category: "Infraestructura" },
   { name: "RabbitMQ / Message Brokers",      pct: 82, category: "Infraestructura" },
@@ -29,7 +26,6 @@ const catMeta: Record<string, { label: string }> = {
   "Gestión":         { label: "text-indigo-300 bg-indigo-500/10 border-indigo-500/20" },
   "Tecnología":      { label: "text-sky-300    bg-sky-500/10    border-sky-500/20" },
   "Desarrollo":      { label: "text-blue-300   bg-blue-500/10   border-blue-500/20" },
-  "IA & ML":         { label: "text-blue-300   bg-blue-500/10   border-blue-500/20" },
   "Infraestructura": { label: "text-indigo-300 bg-indigo-500/10 border-indigo-500/20" },
   "ERP":             { label: "text-indigo-300 bg-indigo-500/10 border-indigo-500/20" },
   "Bases de Datos":  { label: "text-sky-300    bg-sky-500/10    border-sky-500/20" },
@@ -40,7 +36,7 @@ const techBadges = [
   "Kotlin", "React Native", "PHP", "Python", "JavaScript", "TypeScript", "Java",
   "SQL Server", "Oracle", "MySQL", "PostgreSQL",
   "SAP ABAP", "SAP POS", "SAP R3", "AWS", "Azure", "WMS-KNAPP", "AS400",
-  "RedHat", "Ubuntu", "Git", "Ansible", "Jenkins", "RabbitMQ", "Gemini AI", "TensorFlow", "OpenCV", "LangChain",
+  "RedHat", "Ubuntu", "Git", "Ansible", "Jenkins", "RabbitMQ",
 ];
 
 function useReveal(threshold = 0.15) {

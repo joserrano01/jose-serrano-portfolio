@@ -3,16 +3,16 @@
 import { useEffect, useRef, useState } from "react";
 import Particles from "./Particles";
 
-const ROLES = ["Consultor Senior TI", "Full Stack Developer", "Security Expert", "AI Engineer"];
+const ROLES = ["Consultor Senior TI", "Full Stack Developer", "Security Expert", "DevOps Engineer"];
 
 const techStack = [
   { name: "Laravel" },
   { name: "FastAPI" },
   { name: "React/Next.js" },
   { name: "Kotlin" },
-  { name: "Gemini AI" },
   { name: "React Native" },
   { name: "Docker" },
+  { name: "Ansible" },
   { name: "SAP" },
 ];
 
