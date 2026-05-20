@@ -1,10 +1,35 @@
+# Portfolio José Serrano — VPS vps-prestamos
+#
+# Se integra con el Traefik existente en el host (no levanta uno propio).
+# Traefik descubre el servicio vía Docker labels y gestiona SSL (myresolver).
+#
+# Setup inicial:
+#   cd /aplic/projects/portafolioJoseSerrano
+#   cp .env.example .env   # rellenar valores reales
+#   docker compose up -d --build
+#
+# Deploy automático via GitHub Actions (push a main).
+
+name: portfolio-jose
+
+networks:
+  traefik-public:
+    external: true
+
+volumes:
+  uploads:
+    driver: local
+
 services:
   portfolio:
     build: .
+    image: portfolio-jose:latest
     container_name: portfolio-jose
     restart: unless-stopped
-    ports:
-      - "3000:3000"
+    networks:
+      - traefik-public
+    expose:
+      - "3000"
     volumes:
       - uploads:/app/public/uploads
     environment:
@@ -13,11 +38,36 @@ services:
       - CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY:-}
       - CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET:-}
     healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://localhost:3000"]
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/"]
       interval: 30s
       timeout: 10s
       retries: 3
+      start_period: 15s
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: "256M"
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: "traefik-public"
 
-volumes:
-  uploads:
-    driver: local
+      # ── HTTP → HTTPS redirect ───────────────────────────────────────
+      traefik.http.routers.portfolio-http.rule: "Host(`jserrano.diasofonline.com`)"
+      traefik.http.routers.portfolio-http.entrypoints: "web"
+      traefik.http.routers.portfolio-http.middlewares: "redirect-to-https@file"
+
+      # ── HTTPS router ────────────────────────────────────────────────
+      traefik.http.routers.portfolio.rule: "Host(`jserrano.diasofonline.com`)"
+      traefik.http.routers.portfolio.entrypoints: "websecure"
+      traefik.http.routers.portfolio.tls: "true"
+      traefik.http.routers.portfolio.tls.certresolver: "myresolver"
+      traefik.http.routers.portfolio.middlewares: "secure-headers@file,portfolio-ratelimit"
+
+      # ── Rate limiting (portfolio público — límite generoso) ─────────
+      traefik.http.middlewares.portfolio-ratelimit.ratelimit.average: "60"
+      traefik.http.middlewares.portfolio-ratelimit.ratelimit.burst: "120"
+      traefik.http.middlewares.portfolio-ratelimit.ratelimit.period: "1s"
+
+      # ── Servicio ────────────────────────────────────────────────────
+      traefik.http.services.portfolio.loadbalancer.server.port: "3000"

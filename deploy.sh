@@ -1,20 +1,23 @@
 #!/bin/bash
-set -e
+set -euo pipefail
 
+DOCKER="/home/soporte/bin/docker"
 APP_DIR="/aplic/projects/portafolioJoseSerrano"
 
-echo "==> Pulling latest code..."
+echo "[deploy] $(date '+%Y-%m-%d %H:%M:%S') — Iniciando deploy portfolio..."
+
 cd "$APP_DIR"
+
+echo "[deploy] Pull latest code..."
 git pull origin main
 
-echo "==> Building Docker image..."
-docker compose build --no-cache
+echo "[deploy] Build image..."
+$DOCKER compose build --no-cache
 
-echo "==> Restarting container..."
-docker compose up -d
+echo "[deploy] Restart container (zero-downtime swap)..."
+$DOCKER compose up -d --remove-orphans
 
-echo "==> Status:"
-docker compose ps
+echo "[deploy] Status:"
+$DOCKER compose ps
 
-echo ""
-echo "✅ Portfolio desplegado en https://jserrano.diasofonline.com"
+echo "[deploy] ✅ Portfolio live en https://jserrano.diasofonline.com"
