@@ -213,6 +213,16 @@ export default function Hero() {
             Contactar
           </a>
           <MagneticButton
+            href="/cv"
+            className="px-6 py-3 rounded-xl font-semibold flex items-center gap-2 text-sky-300 hover:text-sky-200"
+            style={{ background: "rgba(56,189,248,0.08)", border: "1px solid rgba(56,189,248,0.25)" }}
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            Ver CV
+          </MagneticButton>
+          <MagneticButton
             href="https://wa.me/50764300121"
             target="_blank"
             rel="noopener noreferrer"
