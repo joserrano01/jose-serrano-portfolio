@@ -1,64 +1,123 @@
 @import "tailwindcss";
 
 :root {
-  --navy: #0a1628;
-  --navy-mid: #0d2044;
-  --navy-light: #1a3a6b;
-  --accent: #2563eb;
-  --accent-light: #3b82f6;
-  --gold: #f59e0b;
-  --text: #e2e8f0;
-  --text-muted: #94a3b8;
+  --navy:          #050d1a;
+  --navy-mid:      #0a1628;
+  --navy-light:    #0f1f3d;
+  --accent:        #2563eb;
+  --accent-light:  #3b82f6;
+  --accent-violet: #8b5cf6;
+  --accent-cyan:   #06b6d4;
+  --gold:          #f59e0b;
+  --text:          #e2e8f0;
+  --text-muted:    #94a3b8;
 }
 
-* {
-  scroll-behavior: smooth;
-  box-sizing: border-box;
-}
+html { scroll-behavior: smooth; }
+*, *::before, *::after { box-sizing: border-box; }
 
 body {
   background-color: var(--navy);
   color: var(--text);
+  -webkit-font-smoothing: antialiased;
 }
 
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-violet); }
+
+/* ── Gradient text ─────────────────────────────────────────────────── */
 .gradient-text {
-  background: linear-gradient(135deg, #3b82f6, #06b6d4);
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6, #06b6d4);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.card-hover {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.gradient-text-blue {
+  background: linear-gradient(90deg, #3b82f6, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.2);
+/* ── Glassmorphism ─────────────────────────────────────────────────── */
+.glass {
+  background: rgba(10, 22, 40, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
 }
 
+/* ── Section elements ─────────────────────────────────────────────── */
 .section-divider {
   width: 60px;
-  height: 4px;
-  background: linear-gradient(90deg, #2563eb, #06b6d4);
+  height: 3px;
+  background: linear-gradient(90deg, #2563eb, #8b5cf6, #06b6d4);
   border-radius: 2px;
-  margin: 12px auto 0;
+  margin: 14px auto 0;
 }
 
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #60a5fa;
+  background: rgba(59, 130, 246, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 9999px;
+  padding: 4px 16px;
+}
+
+/* ── Card hover ───────────────────────────────────────────────────── */
+.card-hover {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(59, 130, 246, 0.18);
+}
+
+/* ── Background dot-grid ──────────────────────────────────────────── */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(59, 130, 246, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* ── Animations ───────────────────────────────────────────────────── */
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.fade-in-up {
-  animation: fadeInUp 0.7s ease forwards;
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(37,99,235,0.4); }
-  50% { box-shadow: 0 0 0 10px rgba(37,99,235,0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5); }
+  50%       { box-shadow: 0 0 32px 10px rgba(59, 130, 246, 0.12); }
 }
 
-.pulse-glow {
-  animation: pulse-glow 2s infinite;
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
 }
+
+@keyframes shimmer {
+  from { background-position: -200% center; }
+  to   { background-position:  200% center; }
+}
+
+.fade-in-up    { animation: fadeInUp 0.7s ease forwards; }
+.animate-float { animation: float 3.5s ease-in-out infinite; }
+.pulse-glow    { animation: pulse-glow 3s ease-in-out infinite; }
+.spin-slow     { animation: spin-slow  9s linear infinite; }
+.spin-reverse  { animation: spin-slow 14s linear infinite reverse; }
