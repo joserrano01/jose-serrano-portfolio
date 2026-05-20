@@ -200,21 +200,21 @@ export default function Hero() {
         >
           <MagneticButton
             href="#proyectos"
-            className="px-6 py-3 rounded-xl text-white font-semibold hover:shadow-lg hover:shadow-blue-500/30"
+            className="px-6 py-3 rounded-xl text-white font-semibold hover:shadow-lg hover:shadow-blue-500/30 transition-premium hover:scale-[1.04] hover:-translate-y-0.5 active:scale-95"
             style={{ background: "linear-gradient(135deg, #2563eb, #7c3aed)" }}
           >
             Ver Proyectos
           </MagneticButton>
           <a
             href="#contacto"
-            className="px-6 py-3 rounded-xl font-semibold transition-all duration-200 hover:-translate-y-0.5 text-slate-300 hover:text-white"
+            className="px-6 py-3 rounded-xl font-semibold transition-premium hover:-translate-y-0.5 text-slate-300 hover:text-white hover:scale-[1.04] active:scale-95"
             style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.12)" }}
           >
             Contactar
           </a>
           <MagneticButton
             href="/cv"
-            className="px-6 py-3 rounded-xl font-semibold flex items-center gap-2 text-sky-300 hover:text-sky-200"
+            className="px-6 py-3 rounded-xl font-semibold flex items-center gap-2 text-sky-300 hover:text-sky-200 transition-premium hover:scale-[1.04] hover:-translate-y-0.5 active:scale-95"
             style={{ background: "rgba(56,189,248,0.08)", border: "1px solid rgba(56,189,248,0.25)" }}
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
@@ -226,7 +226,7 @@ export default function Hero() {
             href="https://wa.me/50764300121"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3 rounded-xl font-semibold flex items-center gap-2 text-green-400 hover:text-green-300"
+            className="px-6 py-3 rounded-xl font-semibold flex items-center gap-2 text-green-400 hover:text-green-300 transition-premium hover:scale-[1.04] hover:-translate-y-0.5 active:scale-95 animate-pulse-subtle"
             style={{ background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.28)" }}
           >
             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
@@ -238,7 +238,7 @@ export default function Hero() {
             href="https://www.linkedin.com/in/jose-serrano-21406650/"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3 rounded-xl font-semibold flex items-center gap-2 text-blue-400 hover:text-blue-300"
+            className="px-6 py-3 rounded-xl font-semibold flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-premium hover:scale-[1.04] hover:-translate-y-0.5 active:scale-95"
             style={{ background: "rgba(59,130,246,0.08)", border: "1px solid rgba(59,130,246,0.28)" }}
           >
             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden>

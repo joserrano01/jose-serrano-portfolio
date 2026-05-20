@@ -138,9 +138,9 @@ export default function Projects() {
             <button
               key={cat}
               onClick={() => setFilter(cat)}
-              className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 border ${
+              className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300 border hover:scale-[1.04] active:scale-95 cursor-pointer ${
                 filter === cat
-                  ? "bg-blue-600 border-blue-500 text-white"
+                  ? "bg-blue-600 border-blue-500 text-white shadow-lg shadow-blue-500/20"
                   : "border-slate-700/60 text-slate-400 hover:text-blue-400 hover:border-blue-500/40"
               }`}
               style={filter !== cat ? { background: "rgba(15,31,61,0.5)" } : {}}
@@ -152,17 +152,19 @@ export default function Projects() {
 
         {/* Project grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((project) => {
+          {filtered.map((project, i) => {
             const catStyle = categoryStyle[project.category] ?? defaultCategoryStyle;
             const icon = placeholderIcon[project.category] ?? "💻";
             return (
               <div
-                key={project.id}
+                key={`${filter}-${project.id}`}
                 className="rounded-2xl overflow-hidden flex flex-col tilt-card"
                 style={{
                   background: "radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(37,99,235,0.1) 0%, transparent 55%), rgba(12,30,56,0.65)",
                   border: "1px solid rgba(59,130,246,0.1)",
                   backdropFilter: "blur(10px)",
+                  opacity: 0,
+                  animation: `scaleIn 0.55s cubic-bezier(0.23, 1, 0.32, 1) ${i * 0.05}s both`,
                   transition: "transform 0.55s cubic-bezier(0.23,1,0.32,1)",
                   "--mx": "50%",
                   "--my": "50%",

@@ -160,7 +160,7 @@ export default function Contact() {
             href="https://wa.me/50764300121"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-7 py-3.5 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-green-500/30"
+            className="inline-flex items-center gap-3 px-7 py-3.5 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-green-500/30 transition-premium hover:scale-[1.04] hover:-translate-y-0.5 active:scale-95 animate-pulse-subtle"
             style={{ background: "linear-gradient(135deg, #16a34a, #15803d)" }}
           >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -172,7 +172,7 @@ export default function Contact() {
             href="https://www.linkedin.com/in/jose-serrano-21406650/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-7 py-3.5 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-blue-500/30"
+            className="inline-flex items-center gap-3 px-7 py-3.5 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-blue-500/30 transition-premium hover:scale-[1.04] hover:-translate-y-0.5 active:scale-95"
             style={{ background: "#0077B5" }}
           >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -182,7 +182,7 @@ export default function Contact() {
           </MagneticButton>
           <a
             href="mailto:joseserrano01@gmail.com"
-            className="inline-flex items-center gap-3 px-7 py-3.5 font-semibold rounded-xl transition-all duration-200 hover:-translate-y-0.5 text-slate-300 hover:text-white"
+            className="inline-flex items-center gap-3 px-7 py-3.5 font-semibold rounded-xl transition-premium hover:-translate-y-0.5 text-slate-300 hover:text-white hover:scale-[1.04] active:scale-95"
             style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.12)" }}
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

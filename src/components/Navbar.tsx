@@ -26,12 +26,12 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[#0a1628]/95 backdrop-blur-md shadow-lg shadow-black/20"
-          : "bg-transparent"
+          ? "bg-[#0a1628]/95 backdrop-blur-md shadow-lg shadow-black/20 border-b border-blue-500/5 py-3"
+          : "bg-transparent py-4"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="#inicio" className="text-xl font-bold gradient-text">
+      <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
+        <a href="#inicio" className="text-xl font-bold gradient-text transition-all hover:scale-105">
           JS
         </a>
 
@@ -41,7 +41,7 @@ export default function Navbar() {
             <li key={l.href}>
               <a
                 href={l.href}
-                className="text-sm text-slate-300 hover:text-blue-400 transition-colors"
+                className="text-sm text-slate-300 hover:text-blue-400 transition-colors nav-link-underline pb-1 block"
               >
                 {l.label}
               </a>
@@ -51,7 +51,7 @@ export default function Navbar() {
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden text-slate-300"
+          className="md:hidden text-slate-300 transition-transform active:scale-95"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
         >
@@ -80,24 +80,28 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile menu */}
-      {menuOpen && (
-        <div className="md:hidden bg-[#0d2044]/98 backdrop-blur-md px-6 pb-4">
-          <ul className="flex flex-col gap-3">
-            {navLinks.map((l) => (
-              <li key={l.href}>
-                <a
-                  href={l.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="block text-slate-300 hover:text-blue-400 transition-colors py-1"
-                >
-                  {l.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      {/* Mobile menu with premium transition */}
+      <div
+        className={`md:hidden bg-[#0a1628]/98 backdrop-blur-md px-6 overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] ${
+          menuOpen
+            ? "max-h-[350px] opacity-100 py-4 border-t border-blue-500/10 shadow-lg"
+            : "max-h-0 opacity-0 py-0 pointer-events-none"
+        }`}
+      >
+        <ul className="flex flex-col gap-3">
+          {navLinks.map((l) => (
+            <li key={l.href}>
+              <a
+                href={l.href}
+                onClick={() => setMenuOpen(false)}
+                className="block text-slate-300 hover:text-blue-400 transition-colors py-1 nav-link-underline inline-block"
+              >
+                {l.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </nav>
   );
 }
