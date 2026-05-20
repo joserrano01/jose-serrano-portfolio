@@ -5,9 +5,21 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "José Serrano | Ing. de Sistemas & Security Expert",
+  title: "José Serrano | Consultor Senior TI · Full Stack · Security · AI",
   description:
-    "Portfolio de José Serrano — experto en Seguridad Informática, Laravel, FastAPI, React, Kotlin y Linux con más de 20 años de experiencia.",
+    "Consultor Senior TI con 20+ años transformando retos empresariales en soluciones tecnológicas de alto impacto. Full Stack Developer, Security Expert y AI Engineer en Panamá.",
+  keywords: [
+    "Consultor TI Panamá", "Full Stack Developer", "Security Expert",
+    "Laravel", "FastAPI", "React", "Kotlin", "Ansible", "Jenkins", "RabbitMQ",
+    "SAP", "Docker", "AI Engineer", "Gemini AI",
+  ],
+  authors: [{ name: "José Serrano" }],
+  openGraph: {
+    title: "José Serrano | Consultor Senior TI",
+    description: "20+ años entregando resultados en proyectos enterprise. Full Stack · Security · AI · DevOps.",
+    type: "website",
+    locale: "es_PA",
+  },
 };
 
 export default function RootLayout({
