@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Particles from "./Particles";
-
 const ROLES = ["Consultor Senior TI", "Full Stack Developer", "Security Expert", "AI Engineer"];
 
 const techStack = [
@@ -87,9 +85,6 @@ export default function Hero() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-grid"
       style={{ backgroundColor: "#050d1a" }}
     >
-      {/* Canvas particles */}
-      <Particles />
-
       {/* Ambient blobs — animated */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden>
         <div
@@ -133,21 +128,17 @@ export default function Hero() {
           Consultor Senior TI · 20+ Años de Track Record · Panamá
         </div>
 
-        {/* Avatar with orbit rings */}
+        {/* Avatar */}
         <div
-          className="relative inline-flex items-center justify-center mb-8"
+          className="inline-flex items-center justify-center mb-8"
           style={{ opacity: 0, animation: "scaleIn 0.6s ease 0.25s both" }}
         >
           <div
-            className="w-28 h-28 rounded-full flex items-center justify-center pulse-glow z-10"
-            style={{ background: "linear-gradient(135deg, #1e3a8a, #1e1b4b)", border: "2px solid rgba(99,102,241,0.45)" }}
+            className="w-24 h-24 rounded-full flex items-center justify-center"
+            style={{ background: "linear-gradient(135deg, #1e3a8a, #1e1b4b)", border: "2px solid rgba(99,102,241,0.35)" }}
           >
-            <span className="text-4xl font-black gradient-text select-none">JS</span>
+            <span className="text-3xl font-black text-white select-none">JS</span>
           </div>
-          <div className="absolute rounded-full spin-slow"
-            style={{ inset: "-16px", border: "1px solid rgba(59,130,246,0.22)" }} />
-          <div className="absolute rounded-full spin-reverse"
-            style={{ inset: "-30px", border: "1px solid rgba(139,92,246,0.12)" }} />
         </div>
 
         {/* Name */}
@@ -156,7 +147,7 @@ export default function Hero() {
           style={{ opacity: 0, animation: "slideInUp 0.6s ease 0.4s both" }}
         >
           <span className="text-white">José </span>
-          <span className="gradient-text">Serrano</span>
+          <span style={{ color: "#3b82f6" }}>Serrano</span>
         </h1>
 
         {/* Typewriter role */}
