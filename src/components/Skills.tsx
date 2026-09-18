@@ -39,7 +39,7 @@ const techBadges = [
   "Linux", "Docker", "CI/CD", "VMware", "Laravel", "FastAPI", "React", "Next.js",
   "Kotlin", "React Native", "PHP", "Python", "JavaScript", "TypeScript", "Java",
   "SQL Server", "Oracle", "MySQL", "PostgreSQL",
-  "SAP ABAP", "SAP POS", "SAP R3", "AWS", "Azure", "WMS-KNAPP", "AS400",
+  "SAP ABAP", "SAP POS", "SAP R3", "Enterprise WMS", "AS400",
   "RedHat", "Ubuntu", "Git", "Ansible", "Jenkins", "RabbitMQ", "Gemini AI", "TensorFlow", "OpenCV", "LangChain",
 ];
 

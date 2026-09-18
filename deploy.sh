@@ -9,8 +9,7 @@ echo "[deploy] $(date '+%Y-%m-%d %H:%M:%S') — Iniciando deploy portfolio..."
 cd "$APP_DIR"
 
 echo "[deploy] Pull latest code..."
-git fetch origin main
-git reset --hard origin/main
+git pull origin main
 
 echo "[deploy] Build image..."
 $DOCKER compose build --no-cache

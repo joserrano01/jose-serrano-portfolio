@@ -139,7 +139,7 @@ export default function ValueProp() {
             className="relative px-6 text-center text-sm md:text-base font-medium italic"
             style={{ background: "#050d1a", color: "#94a3b8" }}
           >
-            "No mido mi trabajo en líneas de código. Lo mido en sistemas que funcionan, proyectos entregados y objetivos de negocio alcanzados."
+            &ldquo;No mido mi trabajo en líneas de código. Lo mido en sistemas que funcionan, proyectos entregados y objetivos de negocio alcanzados.&rdquo;
           </p>
         </div>
 

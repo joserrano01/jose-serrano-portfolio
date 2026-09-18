@@ -9,7 +9,7 @@ const expertise = [
   { icon: "🛠️", title: "Backend – Laravel / FastAPI", desc: "APIs REST y microservicios enterprise que manejan carga real. RabbitMQ para comunicación asíncrona entre servicios. PostgreSQL, MySQL, Oracle — con optimización desde el diseño." },
   { icon: "🤖", title: "IA & Machine Learning",       desc: "Integración de Gemini AI, Computer Vision y LLMs en sistemas reales. IA aplicada con impacto de negocio medible." },
   { icon: "📱", title: "Desarrollo Mobile",            desc: "Apps Android nativas (Kotlin) y multiplataforma (React Native) integradas a sistemas empresariales críticos." },
-  { icon: "☁️", title: "Cloud & ERP",                  desc: "AWS, Azure, SAP POS en 29 sucursales, SAP-R3, WMS-KNAPP. Implementaciones a escala con cero tolerancia al fallo." },
+  { icon: "☁️", title: "Cloud & ERP",                  desc: "SAP POS en 29 sucursales, SAP-R3, plataformas cloud y sistemas WMS. Implementaciones a escala con cero tolerancia al fallo." },
 ];
 
 const stats = [

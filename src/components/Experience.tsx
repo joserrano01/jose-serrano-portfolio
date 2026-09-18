@@ -1,54 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useLang } from "@/context/LangContext";
+import { useReveal } from "@/hooks/useReveal";
 
-const jobs = [
-  {
-    period: "2003 – Actual",
-    company: "Farmacias Arrocha",
-    location: "Panamá",
-    role: "Project Manager / Analista Programador de Sistemas",
-    achievements: [
-      "Lideré sin interrupciones la migración de plataforma POS en 28 sucursales — 300+ estaciones actualizadas con cero tiempo de inactividad.",
-      "Implementé SAP POS en 29 farmacias, unificando operaciones nacionales bajo una plataforma estándar y eliminando inconsistencias entre sucursales.",
-      "Integré WMS-KNAPP/AS400 automatizando la facturación en línea — eliminación de procesos manuales críticos y reducción de errores operativos.",
-      "Implementé SAP-R3 interfaces e IDOCS para integración con sistemas existentes, logrando interoperabilidad total entre plataformas heterogéneas.",
-      "Automaticé aprovisionamiento y configuración de infraestructura con Ansible — reducción drástica de tiempos de despliegue y eliminación de configuraciones manuales inconsistentes.",
-      "Administré infraestructura de alta disponibilidad: VMware VCenter, SAN DELL EqualLogic, Site Recovery Manager — uptime sostenido en ambiente crítico.",
-      "Certificado SAP ABAP. Dominio end-to-end de la plataforma: desarrollo, configuración e integración.",
-    ],
-  },
-  {
-    period: "1994 – 2002",
-    company: "Grupo Lee Chang Hnos.",
-    location: "Chiriquí",
-    role: "Gerente de Sistemas Informáticos",
-    achievements: [
-      "Fui pionero en tecnología inalámbrica para inventarios con código de barras en la región (1994) — solución adoptada antes de que se convirtiera en estándar de industria.",
-      "Desarrollé e implementé sistema integral de préstamos y financiamiento — control automatizado de cuentas por cobrar/pagar que eliminó el procesamiento manual.",
-      "Desplegué sistema de facturación e inventario en Hipermas (Costa Rica), expandiendo la solución a mercado centroamericano.",
-      "Implementé Trimax para puntos de venta, estandarizando y acelerando operaciones en toda la cadena de tiendas.",
-      "Configuré infraestructura completa: SCO Unix, Linux Red Hat 7.0, Novell 3.2 — base tecnológica que soportó operaciones por años sin fallos.",
-    ],
-  },
-];
-
-function useCardReveal() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } },
-      { threshold: 0.2 }
-    );
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, []);
-  return [ref, visible] as const;
-}
-
-function JobCard({ job, idx }: { job: typeof jobs[0]; idx: number }) {
-  const [ref, visible] = useCardReveal();
+function JobCard({ job, idx }: { job: { period: string; company: string; location: string; role: string; achievements: readonly string[] }; idx: number }) {
+  const [ref, visible] = useReveal(0.2);
   const isLeft = idx % 2 === 0;
 
   return (
@@ -62,18 +19,16 @@ function JobCard({ job, idx }: { job: typeof jobs[0]; idx: number }) {
           : "none",
       }}
     >
-      {/* Timeline dot */}
       <div
         className="absolute left-6 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full border-2 mt-6"
         style={{
           background: "linear-gradient(135deg, #2563eb, #6366f1)",
           borderColor: "#050d1a",
-          boxShadow: visible ? "0 0 12px rgba(37,99,235,0.6)" : "none",
+          boxShadow: visible ? "0 0 12px rgba(37,99,235,0.5)" : "none",
           transition: "box-shadow 0.4s ease 0.3s",
         }}
       />
 
-      {/* Content card */}
       <div className={`ml-14 md:ml-0 md:w-1/2 ${isLeft ? "md:pr-10 md:text-right" : "md:pl-10"}`}>
         <div
           className="rounded-2xl p-6 card-hover"
@@ -107,6 +62,7 @@ function JobCard({ job, idx }: { job: typeof jobs[0]; idx: number }) {
 }
 
 export default function Experience() {
+  const { t } = useLang();
   const lineRef = useRef<HTMLDivElement>(null);
   const [lineVisible, setLineVisible] = useState(false);
 
@@ -120,18 +76,17 @@ export default function Experience() {
   }, []);
 
   return (
-    <section id="experiencia" className="py-24 bg-grid" style={{ backgroundColor: "#050d1a" }}>
+    <section id="experience" className="py-24 bg-grid" style={{ backgroundColor: "#050d1a" }}>
       <div className="max-w-5xl mx-auto px-6">
         <div className="text-center mb-16">
-          <span className="section-badge">Trayectoria</span>
+          <span className="section-badge">{t.experience.badge}</span>
           <h2 className="text-3xl md:text-4xl font-bold text-white mt-3">
-            Experiencia <span className="gradient-text">Profesional</span>
+            {t.experience.heading}
           </h2>
           <div className="section-divider" />
         </div>
 
         <div className="relative" ref={lineRef}>
-          {/* Animated timeline line */}
           <div
             className="absolute left-6 md:left-1/2 top-0 w-0.5 -translate-x-1/2 transition-all duration-[2s] ease-out"
             style={{
@@ -139,7 +94,7 @@ export default function Experience() {
               background: "linear-gradient(to bottom, #2563eb, #6366f1, #38bdf8)",
             }}
           />
-          {jobs.map((job, i) => (
+          {t.experience.jobs.map((job, i) => (
             <JobCard key={job.company} job={job} idx={i} />
           ))}
         </div>

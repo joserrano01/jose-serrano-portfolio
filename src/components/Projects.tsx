@@ -1,242 +1,156 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
+import { useReveal } from "@/hooks/useReveal";
+import { useLang } from "@/context/LangContext";
+import { tiltHandlers } from "@/lib/tiltHandlers";
 
-interface Project {
-  id: string;
-  title: string;
-  subtitle: string;
-  description: string;
-  tech: string[];
-  imageUrl?: string;
-  link?: string;
-  category: string;
-  impact?: string;
-  year?: string;
-}
-
-const projects: Project[] = [
-  {
-    id: "1",
-    title: "NexusPOS",
-    subtitle: "Sistema POS Multi-empresa",
-    description:
-      "Plataforma de punto de venta diseñada para operar en entornos desconectados. Soporta múltiples empresas y sucursales desde una sola instancia, con sincronización automática al reconectar. El módulo de IA monitorea patrones operativos y alerta anomalías en tiempo real.",
-    tech: ["Kotlin", "Python", "FastAPI", "SQLite", "AI/ML", "Android"],
-    category: "POS / IA",
-    impact: "Offline-first · Multi-empresa · Multi-sucursal · Kotlin + Python",
-    year: "2025–",
-  },
-  {
-    id: "2",
-    title: "FinanCore",
-    subtitle: "Sistema Financiero de Crédito",
-    description:
-      "Sistema integral para instituciones de crédito en Panamá. Cubre originación de préstamos, amortización con reglas FECI/SERDES/ITBMS, AML/KYC con screening OFAC/ONU/PEP, contabilidad desacoplada vía mensajería y sincronización con sistemas legacy FoxPro.",
-    tech: ["React 19", "FastAPI", "PostgreSQL", "Docker", "RabbitMQ", "SQLAlchemy"],
-    category: "Finanzas",
-    impact: "AML/KYC · Cumplimiento Panameño · 11 servicios integrados",
-    year: "2026",
-  },
-  {
-    id: "3",
-    title: "SAP POS – Farmacias Arrocha",
-    subtitle: "Implementación Nacional",
-    description:
-      "Implementación y desarrollo a medida del sistema SAP POS en 29 sucursales de Farmacias Arrocha, incluyendo interfaces ABAP, configuración de hardware y soporte a más de 300 estaciones de trabajo a nivel nacional.",
-    tech: ["SAP POS", "SAP ABAP", "Oracle", "Linux"],
-    category: "ERP / SAP",
-    impact: "300+ estaciones activas · 29 sucursales unificadas",
-    year: "2003–",
-  },
-  {
-    id: "4",
-    title: "WMS-KNAPP / AS400",
-    subtitle: "Integración de Almacenes",
-    description:
-      "Integración entre el sistema de gestión de almacenes WMS-KNAPP y AS400 para automatizar la facturación en línea y eliminar la captura manual de transacciones.",
-    tech: ["WMS-KNAPP", "AS400", "PHP", "SQL Server"],
-    category: "Integración",
-    impact: "Facturación en línea · Cero captura manual",
-    year: "2010",
-  },
-  {
-    id: "5",
-    title: "SAP R3 Interfaces & IDOCs",
-    subtitle: "Integración Multiplataforma",
-    description:
-      "Desarrollo de interfaces e IDOCs para SAP R3, logrando interoperabilidad efectiva con sistemas Linux e IBM AS400.",
-    tech: ["SAP R3", "IDOCs", "Linux", "IBM AS400"],
-    category: "ERP / SAP",
-    impact: "Integración total entre plataformas heterogéneas",
-    year: "2008",
-  },
-  {
-    id: "6",
-    title: "Sistema Financiero Lee Chang",
-    subtitle: "ERP Financiero Pionero",
-    description:
-      "Sistema de control financiero para Grupo Lee Chang: préstamos, financiamiento, inventario con código de barras y cuentas por cobrar/pagar. Uno de los primeros sistemas con lector de código de barras en Chiriquí.",
-    tech: ["Trimax", "SCO Unix", "Linux Red Hat", "Novell"],
-    category: "Finanzas",
-    impact: "Control integral desde 1994 · Pionero en código de barras",
-    year: "1994",
-  },
-  {
-    id: "7",
-    title: "VendedorVirtual",
-    subtitle: "Asistente de Ventas con IA",
-    description:
-      "Plataforma de asistente de ventas impulsada por IA. Gestiona catálogo de productos, atiende consultas de clientes por múltiples canales, procesa pedidos y genera reportes automáticos.",
-    tech: ["FastAPI", "React", "PostgreSQL", "Docker", "RabbitMQ"],
-    category: "IA",
-    impact: "Atención 24/7 · Automatización de ventas",
-    year: "2025",
-  },
-  {
-    id: "8",
-    title: "Sistema AXA",
-    subtitle: "Plataforma Web Empresarial",
-    description:
-      "Sistema de gestión con módulos de administración de pólizas, seguimiento de siniestros, reportes ejecutivos y panel de control para agentes.",
-    tech: ["Laravel", "React", "MySQL", "Docker", "REST API"],
-    category: "Web",
-    impact: "Gestión centralizada de pólizas y siniestros",
-    year: "2024",
-  },
-];
-
-const categoryAccent: Record<string, string> = {
-  "ERP / SAP":   "#6366f1",
-  "Integración": "#0ea5e9",
-  "Finanzas":    "#3b82f6",
-  "IA":          "#8b5cf6",
-  "POS / IA":    "#10b981",
-  "Web":         "#0ea5e9",
+const CATEGORY_COLORS: Record<string, { bg: string; text: string; border: string }> = {
+  "Enterprise · ERP":       { bg: "rgba(139,92,246,0.12)",  text: "#c4b5fd", border: "rgba(139,92,246,0.25)" },
+  "Enterprise · Integration": { bg: "rgba(56,189,248,0.1)", text: "#7dd3fc", border: "rgba(56,189,248,0.22)" },
+  "AI · Backend":           { bg: "rgba(59,130,246,0.1)",   text: "#93c5fd", border: "rgba(59,130,246,0.22)" },
+  "AI · Mobile":            { bg: "rgba(59,130,246,0.1)",   text: "#93c5fd", border: "rgba(59,130,246,0.22)" },
+  "Web · Backend":          { bg: "rgba(34,197,94,0.08)",   text: "#86efac", border: "rgba(34,197,94,0.2)" },
+  "Enterprise · Integración": { bg: "rgba(56,189,248,0.1)", text: "#7dd3fc", border: "rgba(56,189,248,0.22)" },
+  "IA · Backend":           { bg: "rgba(59,130,246,0.1)",   text: "#93c5fd", border: "rgba(59,130,246,0.22)" },
+  "IA · Mobile":            { bg: "rgba(59,130,246,0.1)",   text: "#93c5fd", border: "rgba(59,130,246,0.22)" },
 };
+const DEFAULT_COLOR = { bg: "rgba(59,130,246,0.1)", text: "#93c5fd", border: "rgba(59,130,246,0.22)" };
 
-const defaultAccent = "#3b82f6";
-
-export default function Projects() {
-  const [filter, setFilter] = useState("Todos");
-
-  const categories = ["Todos", ...Array.from(new Set(projects.map((p) => p.category)))];
-  const filtered = filter === "Todos" ? projects : projects.filter((p) => p.category === filter);
+function CaseStudy({ item, labels }: {
+  item: { id: string; title: string; category: string; problem: string; architecture: string; role: string; tech: readonly string[]; challenges: string; solution: string; impact: string };
+  labels: { problemLabel: string; architectureLabel: string; roleLabel: string; challengesLabel: string; solutionLabel: string; impactLabel: string; caseStudyLabel: string };
+}) {
+  const [open, setOpen] = useState(false);
+  const color = CATEGORY_COLORS[item.category] ?? DEFAULT_COLOR;
 
   return (
-    <section id="proyectos" className="py-24" style={{ backgroundColor: "#050d1a" }}>
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="text-center mb-12">
-          <span className="section-badge">Portafolio</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mt-3">
-            Proyectos <span style={{ color: "#3b82f6" }}>Destacados</span>
-          </h2>
-          <div className="section-divider" />
-          <p className="text-slate-500 mt-4 text-sm">30 años de soluciones en producción</p>
+    <div
+      className="rounded-2xl overflow-hidden flex flex-col tilt-card"
+      style={{
+        background: "rgba(12,30,56,0.65)",
+        border: "1px solid rgba(59,130,246,0.1)",
+        backdropFilter: "blur(10px)",
+        transition: "transform 0.55s cubic-bezier(0.23,1,0.32,1), box-shadow 0.25s ease",
+      }}
+      {...tiltHandlers()}
+    >
+      <div className="p-5 flex flex-col flex-1">
+        {/* Header */}
+        <div className="flex items-start justify-between gap-3 mb-3">
+          <div>
+            <span
+              className="inline-block px-2 py-0.5 text-xs font-medium rounded-full border mb-2"
+              style={{ background: color.bg, color: color.text, borderColor: color.border }}
+            >
+              {item.category}
+            </span>
+            <h3 className="font-bold text-white text-sm leading-snug">{item.title}</h3>
+          </div>
+          <span
+            className="flex-shrink-0 text-xs px-2 py-0.5 rounded border"
+            style={{ background: "rgba(59,130,246,0.06)", color: "#64748b", borderColor: "rgba(59,130,246,0.12)" }}
+          >
+            {labels.caseStudyLabel}
+          </span>
         </div>
 
-        {/* Filter */}
-        <div className="flex flex-wrap gap-2 mb-10">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setFilter(cat)}
-              className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 border cursor-pointer ${
-                filter === cat
-                  ? "bg-blue-600 border-blue-500 text-white"
-                  : "border-slate-700/60 text-slate-400 hover:text-slate-200 hover:border-slate-500"
-              }`}
-              style={filter !== cat ? { background: "rgba(15,31,61,0.5)" } : {}}
+        {/* Problem preview */}
+        <p className="text-slate-400 text-xs leading-relaxed mb-3">{item.problem}</p>
+
+        {/* Tech */}
+        <div className="flex flex-wrap gap-1.5 mb-4">
+          {item.tech.map((t) => (
+            <span
+              key={t}
+              className="px-2 py-0.5 text-xs rounded border"
+              style={{ background: "rgba(59,130,246,0.08)", borderColor: "rgba(59,130,246,0.18)", color: "#93c5fd" }}
             >
-              {cat}
-            </button>
+              {t}
+            </span>
           ))}
         </div>
 
-        {/* Project grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {filtered.map((project, i) => {
-            const accent = categoryAccent[project.category] ?? defaultAccent;
-            return (
-              <div
-                key={`${filter}-${project.id}`}
-                className="rounded-xl flex flex-col group"
-                style={{
-                  background: "rgba(10,22,42,0.8)",
-                  border: "1px solid rgba(255,255,255,0.06)",
-                  borderLeft: `3px solid ${accent}`,
-                  opacity: 0,
-                  animation: `scaleIn 0.4s ease ${i * 0.04}s both`,
-                  transition: "border-color 0.2s ease, box-shadow 0.2s ease",
-                }}
-                onMouseEnter={e => {
-                  (e.currentTarget as HTMLDivElement).style.boxShadow = `0 4px 24px rgba(0,0,0,0.4), 0 0 0 1px ${accent}22`;
-                }}
-                onMouseLeave={e => {
-                  (e.currentTarget as HTMLDivElement).style.boxShadow = "";
-                }}
-              >
-                {project.imageUrl && (
-                  <div className="relative h-40 rounded-t-xl overflow-hidden">
-                    <Image src={project.imageUrl} alt={project.title} fill className="object-cover" />
-                  </div>
-                )}
+        {/* Expand toggle */}
+        <button
+          onClick={() => setOpen(!open)}
+          className="flex items-center gap-1.5 text-xs font-medium transition-colors mt-auto"
+          style={{ color: open ? "#60a5fa" : "#475569" }}
+          aria-expanded={open}
+        >
+          <svg
+            className="w-3.5 h-3.5 transition-transform duration-300"
+            style={{ transform: open ? "rotate(90deg)" : "none" }}
+            fill="none" stroke="currentColor" viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+          {open ? "Hide details" : "View case study"}
+        </button>
 
-                <div className="p-5 flex flex-col flex-1">
-                  {/* Category + year */}
-                  <div className="flex items-center justify-between mb-3">
-                    <span
-                      className="text-xs font-medium px-2 py-0.5 rounded"
-                      style={{ background: `${accent}18`, color: accent }}
-                    >
-                      {project.category}
-                    </span>
-                    {project.year && (
-                      <span className="text-xs text-slate-600">{project.year}</span>
-                    )}
-                  </div>
-
-                  <h3 className="font-bold text-white text-base leading-tight">{project.title}</h3>
-                  <p className="text-xs text-slate-500 mb-2">{project.subtitle}</p>
-                  <p className="text-slate-400 text-xs leading-relaxed flex-1">{project.description}</p>
-
-                  {/* Tech tags */}
-                  <div className="flex flex-wrap gap-1.5 mt-4">
-                    {project.tech.map((t) => (
-                      <span
-                        key={t}
-                        className="px-2 py-0.5 text-xs rounded"
-                        style={{ background: "rgba(255,255,255,0.04)", color: "#64748b", border: "1px solid rgba(255,255,255,0.06)" }}
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-
-                  {project.impact && (
-                    <div
-                      className="mt-4 pt-3 text-xs"
-                      style={{ borderTop: "1px solid rgba(255,255,255,0.05)", color: "#475569" }}
-                    >
-                      {project.impact}
-                    </div>
-                  )}
-
-                  {project.link && (
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-400 hover:text-blue-300 text-xs flex items-center gap-1 transition-colors mt-3"
-                    >
-                      Ver proyecto →
-                    </a>
-                  )}
-                </div>
+        {/* Expanded case study */}
+        <div
+          className="overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]"
+          style={{ maxHeight: open ? "800px" : "0px", opacity: open ? 1 : 0 }}
+        >
+          <div className="pt-4 mt-4 border-t space-y-4" style={{ borderColor: "rgba(59,130,246,0.1)" }}>
+            {(
+              [
+                { label: labels.architectureLabel, value: item.architecture },
+                { label: labels.roleLabel, value: item.role },
+                { label: labels.challengesLabel, value: item.challenges },
+                { label: labels.solutionLabel, value: item.solution },
+                { label: labels.impactLabel, value: item.impact },
+              ] as const
+            ).map(({ label, value }) => (
+              <div key={label}>
+                <p className="text-xs font-semibold text-blue-400 mb-1 uppercase tracking-wider">{label}</p>
+                <p className="text-xs text-slate-300 leading-relaxed">{value}</p>
               </div>
-            );
-          })}
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function Projects() {
+  const { t } = useLang();
+  const [ref, visible] = useReveal(0.05);
+
+  return (
+    <section id="projects" className="py-24" style={{ backgroundColor: "#050d1a" }}>
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="text-center mb-12">
+          <span className="section-badge">{t.projects.badge}</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mt-3">
+            {t.projects.heading}
+          </h2>
+          <div className="section-divider" />
+          <p className="text-slate-500 mt-4 text-sm">{t.projects.sub}</p>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6" ref={ref}>
+          {t.projects.items.map((item, i) => (
+            <div
+              key={item.id}
+              style={{
+                opacity: 0,
+                animation: visible ? `scaleIn 0.55s cubic-bezier(0.23,1,0.32,1) ${i * 0.06}s both` : "none",
+              }}
+            >
+              <CaseStudy item={item} labels={{
+                problemLabel: t.projects.problemLabel,
+                architectureLabel: t.projects.architectureLabel,
+                roleLabel: t.projects.roleLabel,
+                challengesLabel: t.projects.challengesLabel,
+                solutionLabel: t.projects.solutionLabel,
+                impactLabel: t.projects.impactLabel,
+                caseStudyLabel: t.projects.caseStudyLabel,
+              }} />
+            </div>
+          ))}
         </div>
       </div>
     </section>
