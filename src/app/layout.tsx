@@ -7,6 +7,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://jserrano.diasofonline.com"),
   title: "José Serrano | Senior Application & Production Support Engineer",
   description:
     "Senior Application & Production Support Engineer with 20+ years supporting business-critical enterprise systems, integrations, and production environments. Backend · Cloud · DevOps · Security · AI Automation. Open to Remote Opportunities — US / LATAM.",
@@ -30,6 +31,8 @@ export const metadata: Metadata = {
     "Panama",
   ],
   authors: [{ name: "José Serrano" }],
+  creator: "José Serrano",
+  category: "technology",
   openGraph: {
     title: "José Serrano | Senior Application & Production Support Engineer",
     description:
@@ -90,6 +93,7 @@ const schemaOrg = {
       url: "https://jserrano.diasofonline.com",
       name: "José Serrano — Senior Application & Production Support Engineer",
       author: { "@id": "https://jserrano.diasofonline.com/#person" },
+      inLanguage: ["en", "es"],
     },
   ],
 };
@@ -97,17 +101,24 @@ const schemaOrg = {
 export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  await headers();
+  const nonce = (await headers()).get("x-nonce") ?? undefined;
 
   return (
-    <html lang="en" className="h-full scroll-smooth">
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }}
-        />
-      </head>
+    <html lang="en" className="h-full scroll-smooth" suppressHydrationWarning>
       <body className={`${inter.className} min-h-full`}>
+        <script
+          nonce={nonce}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(schemaOrg).replace(/</g, "\\u003c"),
+          }}
+        />
+        <script
+          nonce={nonce}
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem("theme");var r=t==="light"||t==="dark"?t:(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=r;document.documentElement.style.colorScheme=r}catch(e){}})();`,
+          }}
+        />
         <Providers>{children}</Providers>
       </body>
     </html>

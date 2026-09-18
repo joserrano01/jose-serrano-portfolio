@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 
 interface Props {
   className: string;
@@ -32,6 +33,14 @@ export function MagneticButton({ className, style, href, children, target, rel, 
       el.removeEventListener("mouseenter", onEnter);
     };
   }, []);
+
+  if (href.startsWith("/")) {
+    return (
+      <Link ref={ref} href={href} className={className} style={style} onClick={onClick}>
+        {children}
+      </Link>
+    );
+  }
   return (
     <a ref={ref} href={href} className={className} style={style} target={target} rel={rel} onClick={onClick}>
       {children}
