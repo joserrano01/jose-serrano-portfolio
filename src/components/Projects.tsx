@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useLang } from "@/context/LangContext";
 
 export default function Projects() {
@@ -63,6 +64,13 @@ export default function Projects() {
                     </div>
                   </div>
                 </details>
+
+                {"demoHref" in project && project.demoHref ? (
+                  <Link className="button button-primary project-demo-link" href={project.demoHref}>
+                    {t.ui.openInteractiveDemo}
+                    <span aria-hidden="true">→</span>
+                  </Link>
+                ) : null}
               </div>
             </article>
           ))}

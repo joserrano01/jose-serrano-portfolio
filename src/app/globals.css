@@ -901,6 +901,10 @@ select {
   line-height: 1.7;
 }
 
+.project-demo-link {
+  margin-top: 1.5rem;
+}
+
 /* AI Lab */
 .ai-groups {
   border-top: 2px solid var(--text-primary);

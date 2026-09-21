@@ -26,6 +26,7 @@ export const translations = {
       system: "System",
       viewCaseStudy: "View case study",
       hideCaseStudy: "Close case study",
+      openInteractiveDemo: "Open interactive demo",
     },
     hero: {
       badge: "Open to Remote — US / LATAM · Panama",
@@ -169,6 +170,19 @@ export const translations = {
       solutionLabel: "Solution",
       impactLabel: "Business Impact",
       items: [
+        {
+          id: "pharmacy-system",
+          title: "Pharmaceutical Prescription Workflow",
+          category: "AI · Full-Stack · Security",
+          problem: "Pharmacists need to convert handwritten prescriptions into accurate dispensing labels while keeping a qualified person in control of every uncertain field.",
+          architecture: "React interface, FastAPI services, PostgreSQL, asynchronous messaging, secrets management and encrypted document storage, deployed in isolated container environments.",
+          role: "Sole full-stack developer and system architect, responsible for product workflow, application code, infrastructure, deployment and iterative security improvements.",
+          tech: ["React", "FastAPI", "PostgreSQL", "Docker", "RabbitMQ", "Vault", "Applied AI"],
+          challenges: "Reconciling imperfect AI extraction with customer and medication master data without allowing uncertain results to become dispensing instructions automatically.",
+          solution: "AI-assisted extraction produces structured suggestions, catalog matching highlights ambiguity, and the pharmacist must review or correct the result before generating one or more labels per medication.",
+          impact: "Pre-production system in final development. The workflow is designed to reduce transcription effort while preserving mandatory human validation; no production outcome is claimed.",
+          demoHref: "/projects/pharmacy-system",
+        },
         {
           id: "sap-pos",
           title: "SAP POS — Farmacias Arrocha",
@@ -468,6 +482,7 @@ export const translations = {
       system: "Sistema",
       viewCaseStudy: "Ver caso de estudio",
       hideCaseStudy: "Cerrar caso de estudio",
+      openInteractiveDemo: "Abrir demo interactiva",
     },
     hero: {
       badge: "Disponible para trabajo remoto — US / LATAM · Panamá",
@@ -611,6 +626,19 @@ export const translations = {
       solutionLabel: "Solución",
       impactLabel: "Impacto de Negocio",
       items: [
+        {
+          id: "pharmacy-system",
+          title: "Flujo Farmacéutico de Prescripciones",
+          category: "IA · Full-Stack · Seguridad",
+          problem: "El farmacéutico necesita convertir prescripciones manuscritas en etiquetas de despacho precisas, manteniendo a una persona calificada en control de cada dato incierto.",
+          architecture: "Interfaz React, servicios FastAPI, PostgreSQL, mensajería asíncrona, gestión de secretos y almacenamiento cifrado de documentos, desplegados en ambientes aislados con contenedores.",
+          role: "Único desarrollador full-stack y arquitecto del sistema, responsable del flujo de producto, código, infraestructura, despliegue y mejoras iterativas de seguridad.",
+          tech: ["React", "FastAPI", "PostgreSQL", "Docker", "RabbitMQ", "Vault", "IA aplicada"],
+          challenges: "Conciliar una extracción de IA imperfecta con los maestros de clientes y medicamentos, sin permitir que resultados inciertos se conviertan automáticamente en instrucciones de despacho.",
+          solution: "La extracción asistida por IA genera datos estructurados, la comparación con catálogos señala ambigüedades y el farmacéutico debe revisar o corregir el resultado antes de generar una o más etiquetas por medicamento.",
+          impact: "Sistema preproductivo en fase final de desarrollo. El flujo busca reducir el esfuerzo de transcripción preservando la validación humana obligatoria; no se atribuyen resultados de producción.",
+          demoHref: "/projects/pharmacy-system",
+        },
         {
           id: "sap-pos",
           title: "SAP POS — Farmacias Arrocha",
