@@ -21,12 +21,12 @@ export default function Hero() {
           <p className="hero-statement">{hero.tagline}</p>
 
           <div className="hero-primary-actions" aria-label="Portfolio sections">
-            <a className="button button-primary" href="#experience">
-              {hero.cta.experience}
+            <a className="button button-primary" href="#projects">
+              {hero.cta.projects}
               <span aria-hidden="true">→</span>
             </a>
-            <a className="button button-secondary" href="#projects">
-              {hero.cta.projects}
+            <a className="button button-secondary" href="#experience">
+              {hero.cta.experience}
             </a>
           </div>
 
@@ -49,7 +49,7 @@ export default function Hero() {
           <div className="hero-location">
             <span>Panama</span>
             <span aria-hidden="true">·</span>
-            <span>Remote US / LATAM</span>
+            <span>UTC-5</span>
           </div>
         </aside>
       </div>

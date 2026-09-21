@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://jserrano.diasofonline.com"),
   title: "José Serrano | Senior Application & Production Support Engineer",
   description:
-    "Senior Application & Production Support Engineer with 20+ years supporting business-critical enterprise systems, integrations, and production environments. Backend · Cloud · DevOps · Security · AI Automation. Open to Remote Opportunities — US / LATAM.",
+    "Senior Application & Production Support Engineer with 30+ years supporting business-critical enterprise systems, integrations, and production environments. Available for part-time remote consulting and project-based engagements across US and LATAM.",
   keywords: [
     "Senior Application Support Engineer",
     "Production Support Engineer",
@@ -28,6 +28,8 @@ export const metadata: Metadata = {
     "Enterprise Integration",
     "AI Automation",
     "Remote Work",
+    "Part-Time Consulting",
+    "Technical Consultant",
     "Panama",
   ],
   authors: [{ name: "José Serrano" }],
@@ -36,7 +38,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "José Serrano | Senior Application & Production Support Engineer",
     description:
-      "20+ years supporting business-critical enterprise systems. Backend · Cloud · DevOps · Security · AI. Open to Remote — US / LATAM.",
+      "30+ years supporting business-critical enterprise systems. Available for part-time remote consulting and project-based engagements across US and LATAM.",
     type: "website",
     locale: "en_US",
     url: "https://jserrano.diasofonline.com",
@@ -46,7 +48,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "José Serrano | Senior Application & Production Support Engineer",
     description:
-      "20+ years supporting business-critical enterprise systems. Backend · Cloud · DevOps · Security · AI. Open to Remote — US / LATAM.",
+      "30+ years supporting business-critical enterprise systems. Available for part-time remote consulting and project-based engagements across US and LATAM.",
   },
   alternates: {
     canonical: "https://jserrano.diasofonline.com",
@@ -64,9 +66,9 @@ const schemaOrg = {
       "@type": "Person",
       "@id": "https://jserrano.diasofonline.com/#person",
       name: "José Serrano",
-      jobTitle: "Senior Application & Production Support Engineer",
+      jobTitle: "Programmer Analyst",
       description:
-        "Enterprise technology professional with 20+ years of experience in production systems, backend development, integrations, infrastructure, DevOps, security, and AI.",
+        "Enterprise technology professional with 30+ years of experience in production systems, backend development, integrations, infrastructure, DevOps, security, and applied AI.",
       url: "https://jserrano.diasofonline.com",
       email: "joseserrano01@gmail.com",
       address: {

@@ -780,6 +780,23 @@ select {
 }
 
 /* Projects */
+.projects-intro-copy {
+  display: grid;
+  gap: 1rem;
+}
+
+.projects-intro-copy > p {
+  margin: 0;
+}
+
+.projects-confidentiality {
+  padding-left: 1rem;
+  border-left: 2px solid var(--accent);
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  line-height: 1.6;
+}
+
 .projects-list {
   border-top: 2px solid var(--text-primary);
 }
@@ -903,6 +920,87 @@ select {
 
 .project-demo-link {
   margin-top: 1.5rem;
+}
+
+.additional-projects {
+  margin-top: clamp(3.5rem, 7vw, 6rem);
+}
+
+.additional-projects-header {
+  display: grid;
+  grid-template-columns: minmax(10rem, 0.34fr) 1fr;
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: end;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid var(--text-primary);
+}
+
+.additional-projects-header .eyebrow {
+  grid-column: 1 / -1;
+  margin-bottom: -1rem;
+}
+
+.additional-projects-header h3 {
+  margin: 0;
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+  font-weight: 620;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+.additional-projects-header > p:last-child {
+  max-width: 34rem;
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+.additional-projects-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.additional-projects-list li {
+  display: grid;
+  grid-template-columns: 3rem minmax(12rem, 0.75fr) minmax(16rem, 1fr) minmax(12rem, 0.8fr);
+  gap: clamp(1rem, 3vw, 2.5rem);
+  align-items: center;
+  padding-block: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.additional-project-number,
+.additional-project-category {
+  color: var(--accent);
+  font-size: 0.69rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.additional-project-category {
+  margin: 0 0 0.4rem;
+}
+
+.additional-projects-list h4 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.additional-project-impact,
+.additional-project-tech {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  line-height: 1.6;
+}
+
+.additional-project-tech {
+  opacity: 0.8;
 }
 
 /* AI Lab */
@@ -1411,6 +1509,14 @@ select {
     border-top: 1px solid var(--border);
   }
 
+  .additional-projects-list li {
+    grid-template-columns: 2.5rem minmax(12rem, 0.7fr) 1fr;
+  }
+
+  .additional-project-tech {
+    grid-column: 2 / -1;
+  }
+
   .credentials-grid > section,
   .credentials-grid > section + section {
     padding: 1.75rem 0 0;
@@ -1545,6 +1651,21 @@ select {
   .case-study-grid,
   .about-details {
     grid-template-columns: 1fr;
+  }
+
+  .additional-projects-header,
+  .additional-projects-list li {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .additional-projects-header .eyebrow,
+  .additional-project-tech {
+    grid-column: auto;
+  }
+
+  .additional-project-number {
+    margin-bottom: -0.25rem;
   }
 
   .career-timeline {

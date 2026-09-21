@@ -19,10 +19,10 @@ export default function Home() {
       <main id="main-content" tabIndex={-1}>
         <Hero />
         <ProfessionalImpact />
+        <Projects />
+        <Experience />
         <CoreExpertise />
         <ProductionSupport />
-        <Experience />
-        <Projects />
         <AiLab />
         <CareerTimeline />
         <Certifications />

@@ -11,8 +11,8 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navLinks = [
-    { href: "#experience", label: t.nav.experience },
     { href: "#projects", label: t.nav.projects },
+    { href: "#experience", label: t.nav.experience },
     { href: "#ai-lab", label: t.nav.aiLab },
     { href: "#about", label: t.nav.about },
     { href: "#contact", label: t.nav.contact },

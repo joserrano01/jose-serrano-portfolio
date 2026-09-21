@@ -42,7 +42,7 @@ function useReveal(threshold = 0.15) {
 const pillars = [
   {
     title: "Resultados, No Promesas",
-    body: "Cada proyecto que acepto llega a producción. Más de 20 años de track record con empresas reales — Farmacias Arrocha, Grupo Lee Chang, AXA — respaldan cada compromiso.",
+    body: "Una trayectoria en sistemas empresariales desde 1994 respalda cada compromiso, con experiencia verificable en producción, integraciones e infraestructura.",
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth={1.7} viewBox="0 0 24 24" aria-hidden>
         <circle cx="12" cy="12" r="10" />
@@ -65,7 +65,7 @@ const pillars = [
   },
   {
     title: "Arquitectura Segura desde el Día 1",
-    body: "Maestría en Ciberseguridad + 20 años en infraestructura enterprise. La seguridad, escalabilidad y mantenibilidad no son opcionales — son el punto de partida.",
+    body: "Maestría en Seguridad Informática y experiencia empresarial desde 1994. Seguridad, escalabilidad y mantenibilidad forman parte del diseño desde el inicio.",
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth={1.7} viewBox="0 0 24 24" aria-hidden>
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
@@ -78,8 +78,8 @@ const pillars = [
 const metrics = [
   { value: "28", label: "Sucursales Migradas", accent: false },
   { value: "300+", label: "Estaciones Impactadas", accent: false },
-  { value: "20+", label: "Años en Producción", accent: false },
-  { value: "0", label: "Proyectos Abandonados", accent: true },
+  { value: "30+", label: "Años de Experiencia", accent: false },
+  { value: "M.Sc.", label: "Seguridad Informática", accent: true },
 ];
 
 export default function ValueProp() {

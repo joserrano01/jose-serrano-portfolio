@@ -13,7 +13,7 @@ const expertise = [
 ];
 
 const stats = [
-  { num: 20, suffix: "+", label: "Años de Experiencia" },
+  { num: 30, suffix: "+", label: "Años de Experiencia" },
   { num: 300, suffix: "+", label: "Estaciones Impactadas" },
   { num: 29, suffix: "",   label: "Sucursales SAP-POS" },
   { num: 2,  suffix: "",   label: "Maestrías & Diplomas" },
@@ -98,10 +98,10 @@ export default function About() {
           {/* Bio */}
           <div style={{ opacity: 0, animation: bioVisible ? "slideInLeft 0.7s ease both" : "none" }}>
             <p className="text-slate-300 leading-relaxed mb-4">
-              <strong className="text-white">Consultor Senior TI y Full Stack Developer con más de 20 años transformando retos empresariales en soluciones tecnológicas que funcionan.</strong> He liderado implementaciones críticas en empresas con cientos de usuarios simultáneos, sin interrupciones y dentro del plazo.
+              <strong className="text-white">Profesional de tecnología empresarial con más de 30 años transformando retos de negocio en sistemas confiables.</strong> He liderado implementaciones críticas con cientos de estaciones de trabajo y despliegues por fases sin interrupciones no planificadas.
             </p>
             <p className="text-slate-400 leading-relaxed mb-6">
-              Especialista en arquitecturas enterprise, seguridad informática y sistemas de alto impacto — desde SAP en 29 sucursales hasta integración de Inteligencia Artificial. Maestría en Seguridad Informática. Cada proyecto que inicio, lo termino.
+              Especialista en arquitecturas empresariales, seguridad informática y sistemas de alto impacto — desde SAP en 29 sucursales hasta integración de Inteligencia Artificial. Maestría en Seguridad Informática y experiencia a lo largo del ciclo completo de entrega.
             </p>
             <div className="flex flex-wrap gap-2">
               {["Panamá · Disponible para proyectos", "Español (nativo)", "Inglés (intermedio)"].map((tag) => (
